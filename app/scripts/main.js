@@ -4,8 +4,9 @@ $.getJSON('http://www.reddit.com/r/malefashionadvice/search.json?q=selftext:WAYW
     var comments = response[1].data.children;
     var images = [];
     for (var i = 0; i < comments.length - 1; i++) {
-      if (comments[i].data.body_html.match(/a href="([^"]*)/)[1].split('.').pop() === 'jpg') {
-        images.push(comments[i].data.body_html.match(/a href="([^"]*)/)[1]);
+      var commentLink = comments[i].data.body_html.match(/a href="([^"]*)/)[1]; // comments with a URL present
+      if (commentLink.split('.').pop() === 'jpg') { // checks if link ends in .jpg
+        images.push(commentLink); 
       }
     }
     for (var i = 0; i < images.length; i ++) {
