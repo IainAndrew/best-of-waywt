@@ -1,17 +1,16 @@
-var endings = ['','&after=t3_2vznaw', '&after=t3_2vzv1p', '&after=t3_2vwlt9', '&after=t3_2vx1mr'];
-var result = [];
-for (var i = 0; i < endings.length; i++) {
-  $.getJSON('http://www.reddit.com/r/malefashionadvice.json?jsonp=?&limit=100' + endings[i], function(data) {
-    for (var i = 0; i <= data.data.children.length - 1; i++) {
-      if ( data.data.children[i].data.title.indexOf("WAYWT - ") > -1 ) {
-        result.push(data.data.children[i].data.url + '.json?jsonp=?&sort=top');
+$.getJSON('http://www.reddit.com/r/malefashionadvice/search.json?q=selftext:WAYWT = What Are You Wearing Today&syntax=lucene&restrict_sr=true&sort=new&limit=1', function(response) {
+  var thread = response.data.children[0].data;
+  $.getJSON(thread.url + '.json?jsonp=?', function(response) {
+    var comments = response[1].data.children;
+    var images = [];
+    for (var i = 0; i < comments.length - 1; i++) {
+      if (comments[i].data.body_html.match(/a href="([^"]*)/)[1].split('.').pop() === 'jpg') {
+        images.push(comments[i].data.body_html.match(/a href="([^"]*)/)[1]);
       }
     }
-    //console.log(result);
-    $.getJSON(result, function(data) {
-      for (var i = 0; i <= 10; i++) {
-        console.log(data[1].data.children[i].data.body_html.match(/href="([^"]*)/)[1]);
-      }
-    });
+    for (var i = 0; i < images.length; i ++) {
+      $('#images').append('<img src=' + images[i] + ' class="image" />');
+      console.log(images.length);
+    }
   });
-}
+});
