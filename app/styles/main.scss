@@ -1,16 +1,14 @@
 @import "bourbon";
 
 #images {
-  @include display(flex);
-  @include flex-wrap(wrap);
-  @include flex-direction(column);
-  font-size:0;
-  height:100vw;
+  
 }
 .image {
-  width: 25%;
+  float:left;
+  width:25%;
   @include transition(all 0.2s ease);
-  &:first-child {
-    //width: 50%;
+  img {
+    width: 100%;
+    height: auto;
   }
 }

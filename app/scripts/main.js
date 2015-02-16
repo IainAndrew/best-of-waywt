@@ -20,7 +20,7 @@ $.getJSON('http://www.reddit.com/r/malefashionadvice/search.json?q=selftext:WAYW
       $(this).hide();
     });
     for (var i = 0; i < images.length; i ++) {
-      $('#images').append('<img src=' + images[i] + ' class="image" />');
+      $('#images').append('<div class="image"><img src=' + images[i] + '/>');
     }
   });
 });
