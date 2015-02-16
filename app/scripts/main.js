@@ -3,7 +3,6 @@ $.getJSON('http://www.reddit.com/r/malefashionadvice/search.json?q=selftext:WAYW
   $.getJSON(thread.url + '.json?jsonp=?&sort=top', function(response) {
     var comments = response[1].data.children;
     var images = [];
-    var nonImages = [];
     for (var i = 0; i < comments.length - 1; i++) {
       var commentLink = comments[i].data.body_html.match(/a href="([^"]*)/)[1]; // comments with a URL present
       if (commentLink.split('.').pop() === 'jpg') { // checks if link ends in .jpg
@@ -16,7 +15,6 @@ $.getJSON('http://www.reddit.com/r/malefashionadvice/search.json?q=selftext:WAYW
         images.push(commentLink); 
       }
     }
-    //console.log(nonImages);
     $('img').error(function(){
       $(this).hide();
     });
