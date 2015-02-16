@@ -10,7 +10,7 @@ for (var i = 0; i < endings.length; i++) {
     //console.log(result);
     $.getJSON(result, function(data) {
       for (var i = 0; i <= 10; i++) {
-        console.log(data[1].data.children[i].data.body_html);
+        console.log(data[1].data.children[i].data.body_html.match(/href="([^"]*)/)[1]);
       }
     });
   });
