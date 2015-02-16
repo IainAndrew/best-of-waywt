@@ -9,7 +9,8 @@ $.getJSON('http://www.reddit.com/r/malefashionadvice/search.json?q=selftext:WAYW
         images.push(commentLink); 
       } else if (commentLink.toLowerCase().indexOf("imgur.com") >= 0 // if URL is an imgur link
                 && commentLink.toLowerCase().indexOf("imgur.com/a/") <= 0 // and it's not an album
-                && commentLink.toLowerCase().indexOf("imgur.com/gallery") <= 0) // or a gallery
+                && commentLink.toLowerCase().indexOf("imgur.com/gallery") <= 0 // or a gallery
+                && commentLink.toLowerCase().indexOf(",") <= 0) // or has a comma in it
       {
         commentLink += '.jpg'; // append .jpg to end of the URL
         images.push(commentLink); 

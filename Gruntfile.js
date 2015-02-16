@@ -152,7 +152,7 @@ module.exports = function (grunt) {
     // Compiles Sass to CSS and generates necessary files if requested
     sass: {
       options: {
-        loadPath: 'bower_components'
+        loadPath: 'bower_components/bourbon/app/assets/stylesheets/'
       },
       dist: {
         files: [{
