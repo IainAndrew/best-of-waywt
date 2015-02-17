@@ -1,6 +1,7 @@
 var counter = 0,
     $next = $('#next');
     $prev = $('#prev');
+
 $next.on('click', function() {
   if (counter !== 0) {
     counter -= 1;
@@ -8,20 +9,25 @@ $next.on('click', function() {
     request();
   }
 });
+
 $prev.on('click', function() {
   counter += 1;
   $('#images').empty();
   request();
 });
+
 function masonryInit() {
-  $('#images').imagesLoaded( function(){
+  $('#images').imagesLoaded(function() {
     $('#images').masonry({
       itemSelector: '.image',
       isAnimated: true,
     });
   });
 }
+
 request();
+masonryInit();
+
 function request() {
   $.getJSON('http://www.reddit.com/r/malefashionadvice/search.json?q=selftext:WAYWT = What Are You Wearing Today&syntax=lucene&restrict_sr=true&sort=new', function(response) {
     var thread = response.data.children[counter].data;
@@ -53,9 +59,8 @@ function request() {
         $(this).hide();
       });
       for (var i = 0; i < images.length; i ++) {
-        $('#images').append('<div class="image"><img src=' + images[i] + '>');
+        $('#images').append('<div class="image"><img src=' + images[i] + '>').masonry().masonry('destroy').imagesLoaded(function(){$('#images').masonry()});
       }
-      masonryInit();
     });
   });
 }
