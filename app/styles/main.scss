@@ -1,12 +1,16 @@
 @import "bourbon";
 
 #images {
-  
+  margin:0 auto;
+  width:60%;
 }
 .image {
   float:left;
   width:25%;
   @include transition(all 0.2s ease);
+  &:first-child {
+    width:50%;
+  }
   img {
     width: 100%;
     height: auto;

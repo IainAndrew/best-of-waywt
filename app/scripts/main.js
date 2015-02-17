@@ -1,12 +1,16 @@
-$.getJSON('http://www.reddit.com/r/malefashionadvice/search.json?q=selftext:WAYWT = What Are You Wearing Today&syntax=lucene&restrict_sr=true&sort=new&limit=1', function(response) {
+$.getJSON('http://www.reddit.com/r/malefashionadvice/search.json?q=selftext:WAYWT = What Are You Wearing Today&syntax=lucene&restrict_sr=true&sort=new&limit=3', function(response) {
   var thread = response.data.children[0].data;
   $.getJSON(thread.url + '.json?jsonp=?&sort=top', function(response) {
     var comments = response[1].data.children;
     var images = [];
     for (var i = 0; i < comments.length - 1; i++) {
-      var commentLink = comments[i].data.body_html.match(/a href="([^"]*)/)[1]; // extract url from comment
+      //var commentLink = comments[i].data.body_html.match(/a href="([^"]*)/)[1]; // extract url from comment
+      var match = comments[i].data.body_html.match(/a href="([^"]*)/);
+      if (match) {
+        var commentLink = match[1];
+      }
       function endsWith(str, suffix) {
-          return str.toLowerCase().indexOf(suffix, str.length - suffix.length) !== -1;
+        return str.toLowerCase().indexOf(suffix, str.length - suffix.length) !== -1;
       }
       if (commentLink.toLowerCase().indexOf("imgur.com") >= 0 // if url is an imgur link
        && commentLink.toLowerCase().indexOf("imgur.com/a/") <= 0 // and it's not an album
@@ -19,9 +23,7 @@ $.getJSON('http://www.reddit.com/r/malefashionadvice/search.json?q=selftext:WAYW
       } else if (endsWith(commentLink, '.jpg') === true || endsWith(commentLink, '.png') === true) { // check if link ends in .jpg
         images.push(commentLink); 
       }
-      //console.log(commentLink);
     }
-    //console.log(images);
     $('img').error(function(){
       $(this).hide();
     });
