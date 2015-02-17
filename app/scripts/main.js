@@ -1,4 +1,4 @@
-$.getJSON('http://www.reddit.com/r/malefashionadvice/search.json?q=selftext:WAYWT = What Are You Wearing Today&syntax=lucene&restrict_sr=true&sort=new&limit=3', function(response) {
+$.getJSON('http://www.reddit.com/r/malefashionadvice/search.json?q=selftext:WAYWT = What Are You Wearing Today&syntax=lucene&restrict_sr=true&sort=new', function(response) {
   var thread = response.data.children[0].data;
   $.getJSON(thread.url + '.json?jsonp=?&sort=top', function(response) {
     var comments = response[1].data.children;
