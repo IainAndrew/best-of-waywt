@@ -13,6 +13,14 @@ $prev.on('click', function() {
   $('#images').empty();
   request();
 });
+function masonryInit() {
+  $('#images').imagesLoaded( function(){
+    $('#images').masonry({
+      itemSelector: '.image',
+      isAnimated: true,
+    });
+  });
+}
 request();
 function request() {
   $.getJSON('http://www.reddit.com/r/malefashionadvice/search.json?q=selftext:WAYWT = What Are You Wearing Today&syntax=lucene&restrict_sr=true&sort=new', function(response) {
@@ -47,6 +55,7 @@ function request() {
       for (var i = 0; i < images.length; i ++) {
         $('#images').append('<div class="image"><img src=' + images[i] + '>');
       }
+      masonryInit();
     });
   });
 }
