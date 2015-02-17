@@ -21,12 +21,12 @@ $.getJSON('http://www.reddit.com/r/malefashionadvice/search.json?q=selftext:WAYW
       }
       //console.log(commentLink);
     }
-    console.log(images);
+    //console.log(images);
     $('img').error(function(){
       $(this).hide();
     });
     for (var i = 0; i < images.length; i ++) {
-      $('#images').append('<div class="image"><img src=' + images[i] + '/>');
+      $('#images').append('<div class="image"><img src=' + images[i] + '>');
     }
   });
 });
