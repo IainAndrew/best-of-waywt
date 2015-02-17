@@ -20,7 +20,7 @@ function masonryInit() {
   $('#images').imagesLoaded(function() {
     $('#images').masonry({
       itemSelector: '.image',
-      isAnimated: true,
+      isAnimated: true
     });
   });
 }
