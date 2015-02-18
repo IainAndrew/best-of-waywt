@@ -25,7 +25,7 @@ $newest.on('click', function() {
 function masonryInit() {
   $('#images').imagesLoaded(function() {
     $('#images').masonry({
-      itemSelector: '.image',
+      itemSelector: '.card',
       isAnimated: true
     });
   });
@@ -74,7 +74,7 @@ function request() {
       }
 
       for (var i = 0; i < images.length; i ++) {
-        var imageTemplate = '<div class="image"><img src=' + images[i] + '><span>' + comments[i].data.author + '</span><span>' + comments[i].data.score + ' points</span><a href=' + '//reddit.com' + thread.permalink + comments[i].data.id + '>View on Reddit</a></div>';
+        var imageTemplate = '<div class="card"><img src=' + images[i] + '><span>' + comments[i].data.author + '</span><span>' + comments[i].data.score + ' points</span><a href=' + '//reddit.com' + thread.permalink + comments[i].data.id + '>View on Reddit</a></div>';
         // append images to the container and reinitialise masonry
         $('#images').append(imageTemplate)
                     .masonry().masonry('destroy').imagesLoaded(function(){$('#images').masonry()});
@@ -84,7 +84,7 @@ function request() {
           } else if ( ($(this).attr('src').indexOf('imgur.com') > -1) ) {
             $(this).unbind('error').replaceWith('<a class="view-on" target="_blank" href=' + $(this).attr("src") + '>view album on imgur</a>');
           } else if ( ($(this).attr('src').indexOf('reddit.com') > -1) ) {
-            $(this).unbind('error').closest('.image').remove();
+            $(this).unbind('error').closest('.card').remove();
           }
         });
       }

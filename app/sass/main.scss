@@ -1,34 +1,18 @@
 @import "bourbon";
 @import "neat";
 
-*, *:after, *:before {
-  box-sizing:border-box;
-}
-button {
-  margin:1rem;
-}
-#images {
-  margin-left:1rem;
-  //width:60%;
-}
-.image {
-  float:left;
-  @include calc(width, "25% - 1rem");
-  margin-right:1rem;
-  @include transition(all 0.2s ease);
-  padding:1rem;
-  margin-bottom:1rem;
-  border-radius:2px;
-  box-shadow: 0 1px 3px rgba(0,0,0,0.12), 0 0px 2px rgba(0,0,0,0.24);
-  img {
-    width: 100%;
-    height: auto;
-    vertical-align: bottom;
-  }
-}
-.view-on {
-  display:block;
-  width:100%;
-  height:10rem;
-  background:grey;
-}
+// Utilities
+@import "utils/variables";
+
+// Base
+@import "base/normalize";
+@import "base/fontello";
+@import "base/grid";
+@import "base/base";
+
+// Components
+@import "components/card";
+
+// Partials
+@import "partials/nav";
+@import "partials/footer";

@@ -1,0 +1,46 @@
+body {
+	font-family:$base-font-family;
+	font-weight:$base-font-weight;
+	font-size:$base-font-size;
+	line-height:$base-line-height;
+	letter-spacing:$base-letter-spacing;
+	color:$base-text-color;
+}
+
+h1,h2,h3,h4,h5,h6,p,ul {
+  margin:0;
+  padding:0;
+}
+li {
+  list-style-type:none;
+}
+a {
+  text-decoration:none;
+  color:inherit;
+  &:focus {
+    outline:0;
+  }
+}
+i {
+  -webkit-font-smoothing: antialiased;
+}
+noscript {
+  position:fixed;
+  top:0;
+  left:0;
+  z-index:2;
+  height:100%;
+  width:100%;
+  background:#fff;
+  p {
+    position:absolute;
+    width:100%;
+    top:50%;
+    text-align:center;
+    @include transform(translateY(-50%));
+  }
+}
+
+button {
+  margin:1rem;
+}
