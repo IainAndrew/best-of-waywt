@@ -48,13 +48,9 @@ module.exports = function (grunt) {
       gruntfile: {
         files: ['Gruntfile.js']
       },
-      sass: {
-        files: ['<%= config.app %>/styles/{,*/}*.{scss,sass}'],
-        tasks: ['sass:server', 'autoprefixer']
-      },
       styles: {
-        files: ['<%= config.app %>/styles/{,*/}*.css'],
-        tasks: ['newer:copy:styles', 'autoprefixer']
+        files: ['<%= config.app %>/sass/{,*/}*.scss'],
+        tasks: ['sass', 'newer:copy:styles', 'autoprefixer']
       },
       livereload: {
         options: {
@@ -151,26 +147,21 @@ module.exports = function (grunt) {
 
     // Compiles Sass to CSS and generates necessary files if requested
     sass: {
-      options: {
-        loadPath: 'bower_components/bourbon/app/assets/stylesheets/'
-      },
       dist: {
         files: [{
           expand: true,
-          cwd: '<%= config.app %>/styles',
-          src: ['*.{scss,sass}'],
-          dest: '.tmp/styles',
+          cwd: '<%= config.app %>/sass',
+          src: ['*.scss'],
+          dest: '<%= config.app %>/styles',
           ext: '.css'
-        }]
-      },
-      server: {
-        files: [{
-          expand: true,
-          cwd: '<%= config.app %>/styles',
-          src: ['*.{scss,sass}'],
-          dest: '.tmp/styles',
-          ext: '.css'
-        }]
+        }],
+
+        options: {
+          loadPath: [
+            'bower_components/bourbon/app/assets/stylesheets/',
+            'bower_components/neat/app/assets/stylesheets'
+          ]
+        }
       }
     },
 
@@ -190,16 +181,16 @@ module.exports = function (grunt) {
     },
 
     // Automatically inject Bower components into the HTML file
-    wiredep: {
-      app: {
-        ignorePath: /^\/|\.\.\//,
-        src: ['<%= config.app %>/index.html']
-      },
-      sass: {
-        src: ['<%= config.app %>/styles/{,*/}*.{scss,sass}'],
-        ignorePath: /(\.\.\/){1,2}bower_components\//
-      }
-    },
+    // wiredep: {
+    //   app: {
+    //     ignorePath: /^\/|\.\.\//,
+    //     src: ['<%= config.app %>/index.html']
+    //   },
+    //   sass: {
+    //     src: ['<%= config.app %>/styles/{,*/}*.{scss,sass}'],
+    //     ignorePath: /(\.\.\/){1,2}bower_components\//
+    //   }
+    // },
 
     // Renames files for browser caching purposes
     rev: {
@@ -358,7 +349,6 @@ module.exports = function (grunt) {
     // Run some tasks in parallel to speed up build process
     concurrent: {
       server: [
-        'sass:server',
         'copy:styles'
       ],
       test: [
@@ -385,6 +375,7 @@ module.exports = function (grunt) {
     grunt.task.run([
       'clean:server',
       'wiredep',
+      'sass',
       'concurrent:server',
       'autoprefixer',
       'connect:livereload',
@@ -416,6 +407,7 @@ module.exports = function (grunt) {
     'clean:dist',
     'wiredep',
     'useminPrepare',
+    'sass',
     'concurrent:dist',
     'autoprefixer',
     'concat',
