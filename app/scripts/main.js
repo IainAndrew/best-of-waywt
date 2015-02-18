@@ -74,15 +74,15 @@ function request() {
       }
 
       for (var i = 0; i < images.length; i ++) {
-        var imageTemplate = '<div class="image"><img src=' + images[i] + '><span>' + comments[i].data.author + '</span><span>' + comments[i].data.score + '</span><a href=' + '//reddit.com' + thread.permalink + comments[i].data.id + '>View on Reddit</a></div>';
+        var imageTemplate = '<div class="image"><img src=' + images[i] + '><span>' + comments[i].data.author + '</span><span>' + comments[i].data.score + ' points</span><a href=' + '//reddit.com' + thread.permalink + comments[i].data.id + '>View on Reddit</a></div>';
         // append images to the container and reinitialise masonry
         $('#images').append(imageTemplate)
                     .masonry().masonry('destroy').imagesLoaded(function(){$('#images').masonry()});
         $('img').error(function() {
           if ( ($(this).attr('src').indexOf('drsd.so') > -1) || ($(this).attr('src').indexOf('dressed.so') > -1) ) {
-            $(this).unbind('error').replaceWith('<a href=' + $(this).attr("src") + '>view on dressed.so</a>');
+            $(this).unbind('error').replaceWith('<a class="view-on" target="_blank" href=' + $(this).attr("src") + '>view on dressed.so</a>');
           } else if ( ($(this).attr('src').indexOf('imgur.com') > -1) ) {
-            $(this).unbind('error').replaceWith('<a href=' + $(this).attr("src") + '>view on imgur</a>');
+            $(this).unbind('error').replaceWith('<a class="view-on" target="_blank" href=' + $(this).attr("src") + '>view album on imgur</a>');
           } else if ( ($(this).attr('src').indexOf('reddit.com') > -1) ) {
             $(this).unbind('error').closest('.image').remove();
           }
