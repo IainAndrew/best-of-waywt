@@ -31,9 +31,6 @@ function masonryInit() {
   });
 }
 
-request();
-masonryInit();
-
 function request() {
   $('#images').empty();
   if (isNaN(counter)) {
@@ -42,21 +39,25 @@ function request() {
   $.getJSON('http://www.reddit.com/r/malefashionadvice/search.json?q=selftext:WAYWT = What Are You Wearing Today&syntax=lucene&restrict_sr=true&sort=new', function(response) {
     var thread = response.data.children[counter].data,
         $heading = $('#heading');
+
     $heading.html(thread.title);
     history.pushState('', '', '#' + counter + '/' + thread.title.toLowerCase().slice(7).replace(/\s/g, '').replace('.','-'));
-    //window.location.hash = thread.title.toLowerCase().slice(7).replace(/\s/g, '').replace('.','-');
-    //window.location.replace('#' + counter);
+
     $.getJSON(thread.url + '.json?jsonp=?&sort=top', function(response) {
       var comments = response[1].data.children;
       var images = [];
+
       for (var i = 0; i < comments.length - 1; i++) {
-        var match = comments[i].data.body_html.match(/a href="([^"]*)/);
-        if (match) {
-          var commentLink = match[1];
+        var match = comments[i].data.body_html.match(/a href="([^"]*)/); // extract urls from comments
+
+        if (match) { // makes sure no urls are null so it doesn't break
+          var commentLink = match[1]; 
         }
+
         function endsWith(str, suffix) {
           return str.toLowerCase().indexOf(suffix, str.length - suffix.length) !== -1;
         }
+
         if (commentLink.toLowerCase().indexOf("imgur.com") >= 0 // if url is an imgur link
          && commentLink.toLowerCase().indexOf("imgur.com/a/") <= 0 // and it's not an album
          && commentLink.toLowerCase().indexOf("imgur.com/gallery") <= 0 // or a gallery
@@ -71,15 +72,26 @@ function request() {
           images.push(commentLink); 
         }
       }
+
       for (var i = 0; i < images.length; i ++) {
         var imageTemplate = '<div class="image"><img src=' + images[i] + '><span>' + comments[i].data.author + '</span><span>' + comments[i].data.score + '</span><a href=' + '//reddit.com' + thread.permalink + comments[i].data.id + '>View on Reddit</a></div>';
         // append images to the container and reinitialise masonry
         $('#images').append(imageTemplate)
                     .masonry().masonry('destroy').imagesLoaded(function(){$('#images').masonry()});
         $('img').error(function() {
-          $(this).unbind('error').attr('src', 'http://placehold.it/350x350');
+          if ( ($(this).attr('src').indexOf('drsd.so') > -1) || ($(this).attr('src').indexOf('dressed.so') > -1) ) {
+            $(this).unbind('error').attr('src', 'http://placehold.it/400x400');
+          } else if ( ($(this).attr('src').indexOf('imgur.com') > -1) ) {
+            $(this).unbind('error').attr('src', 'http://placehold.it/350x350');
+          } else if ( ($(this).attr('src').indexOf('reddit.com') > -1) ) {
+            $(this).unbind('error').attr('src', 'http://placehold.it/500x500');
+          }
         });
       }
+
     });
   });
 }
+
+request();
+masonryInit();
