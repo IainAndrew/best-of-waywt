@@ -1,6 +1,7 @@
 var counter = 0,
-    $next = $('#next');
-    $prev = $('#prev');
+    $next = $('#next'),
+    $prev = $('#prev'),
+    $current = $('#current');
 
 $next.on('click', function() {
   if (counter !== 0) {
@@ -14,6 +15,14 @@ $prev.on('click', function() {
   counter += 1;
   $('#images').empty();
   request();
+});
+
+$current.on('click', function() {
+  if (counter !== 0) {
+    counter = 0;
+    $('#images').empty();
+    request();
+  }
 });
 
 function masonryInit() {
@@ -30,7 +39,9 @@ masonryInit();
 
 function request() {
   $.getJSON('http://www.reddit.com/r/malefashionadvice/search.json?q=selftext:WAYWT = What Are You Wearing Today&syntax=lucene&restrict_sr=true&sort=new', function(response) {
-    var thread = response.data.children[counter].data;
+    var thread = response.data.children[counter].data,
+        $heading = $('#heading');
+    $heading.html(thread.title);
     $.getJSON(thread.url + '.json?jsonp=?&sort=top', function(response) {
       var comments = response[1].data.children;
       var images = [];
