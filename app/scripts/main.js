@@ -80,11 +80,11 @@ function request() {
                     .masonry().masonry('destroy').imagesLoaded(function(){$('#images').masonry()});
         $('img').error(function() {
           if ( ($(this).attr('src').indexOf('drsd.so') > -1) || ($(this).attr('src').indexOf('dressed.so') > -1) ) {
-            $(this).unbind('error').attr('src', 'http://placehold.it/400x400');
+            $(this).unbind('error').replaceWith('<a href=' + $(this).attr("src") + '>view on dressed.so</a>');
           } else if ( ($(this).attr('src').indexOf('imgur.com') > -1) ) {
-            $(this).unbind('error').attr('src', 'http://placehold.it/350x350');
+            $(this).unbind('error').replaceWith('<a href=' + $(this).attr("src") + '>view on imgur</a>');
           } else if ( ($(this).attr('src').indexOf('reddit.com') > -1) ) {
-            $(this).unbind('error').attr('src', 'http://placehold.it/500x500');
+            $(this).unbind('error').closest('.image').remove();
           }
         });
       }
