@@ -31,10 +31,6 @@ function masonryInit() {
   });
 }
 
-function changeUrl() {
-  history.pushState('', '', '#' + counter + '/' + 'feb');
-}
-
 request();
 masonryInit();
 
@@ -43,8 +39,6 @@ function request() {
   if (isNaN(counter)) {
     counter = 0;
   }
-  //changeUrl();
-  //thread.title.toLowerCase().slice(7).replace(/\s/g, '').replace('.','-');
   $.getJSON('http://www.reddit.com/r/malefashionadvice/search.json?q=selftext:WAYWT = What Are You Wearing Today&syntax=lucene&restrict_sr=true&sort=new', function(response) {
     var thread = response.data.children[counter].data,
         $heading = $('#heading');
@@ -71,16 +65,20 @@ function request() {
         {
           commentLink += '.jpg'; // append .jpg to end of the url
           images.push(commentLink); 
-        } else if (endsWith(commentLink, '.jpg') === true || endsWith(commentLink, '.png') === true || endsWith(commentLink, '.gif') === true) {
+        // } else if (endsWith(commentLink, '.jpg') === true || endsWith(commentLink, '.png') === true || endsWith(commentLink, '.gif') === true) {
+        //   images.push(commentLink); 
+        } else {
           images.push(commentLink); 
         }
       }
-      $('img').error(function(){
-        $(this).hide();
-      });
       for (var i = 0; i < images.length; i ++) {
+        var imageTemplate = '<div class="image"><img src=' + images[i] + '><span>' + comments[i].data.author + '</span><span>' + comments[i].data.score + '</span><a href=' + '//reddit.com' + thread.permalink + comments[i].data.id + '>View on Reddit</a></div>';
         // append images to the container and reinitialise masonry
-        $('#images').append('<div class="image"><img src=' + images[i] + '>').masonry().masonry('destroy').imagesLoaded(function(){$('#images').masonry()});
+        $('#images').append(imageTemplate)
+                    .masonry().masonry('destroy').imagesLoaded(function(){$('#images').masonry()});
+        $('img').error(function() {
+          $(this).unbind('error').attr('src', 'http://placehold.it/350x350');
+        });
       }
     });
   });
