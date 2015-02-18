@@ -374,7 +374,7 @@ module.exports = function (grunt) {
 
     grunt.task.run([
       'clean:server',
-      'wiredep',
+      //'wiredep',
       'sass',
       'concurrent:server',
       'autoprefixer',
@@ -405,7 +405,7 @@ module.exports = function (grunt) {
 
   grunt.registerTask('build', [
     'clean:dist',
-    'wiredep',
+    //'wiredep',
     'useminPrepare',
     'sass',
     'concurrent:dist',
