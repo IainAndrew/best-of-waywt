@@ -1,21 +1,21 @@
 var counter = parseInt(window.location.hash.slice(1)),
-    $next = $('#next'),
-    $prev = $('#prev'),
-    $current = $('#current');
+    $newer = $('#newer'),
+    $older = $('#older'),
+    $newest = $('#newest');
 
-$next.on('click', function() {
+$newer.on('click', function() {
   if (counter !== 0) {
     counter -= 1;
     request();
   }
 });
 
-$prev.on('click', function() {
+$older.on('click', function() {
   counter += 1;
   request();
 });
 
-$current.on('click', function() {
+$newest.on('click', function() {
   if (counter !== 0) {
     counter = 0;
     request();
