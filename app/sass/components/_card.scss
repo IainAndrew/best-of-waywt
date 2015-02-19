@@ -16,6 +16,9 @@
   @include media($tablet) {
     @include calc(width, "50% - 1rem");
   }
+  @include media($tablet-large) {
+    @include calc(width, "(100% / 3) - 1rem");
+  }
   @include media($desktop) {
     @include calc(width, "25% - 1rem");
   }

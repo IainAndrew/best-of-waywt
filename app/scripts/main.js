@@ -109,7 +109,9 @@ $('#lightbox a').on('click', function(e) {
    e.preventDefault();
   $('#lightbox').removeClass('show');
   $('#overlay').removeClass('show');
-  $('#lightbox-image').empty();
+  setTimeout(function() {
+    $('#lightbox-image').empty();
+  }, 300);
 });
 
 request();
