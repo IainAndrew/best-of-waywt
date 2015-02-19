@@ -74,7 +74,14 @@ function request() {
       }
 
       for (var i = 0; i < images.length; i ++) {
-        var imageTemplate = '<div class="card"><a href="#" class="img-link"><img src=' + images[i] + '></a><span>' + comments[i].data.author + '</span><span>' + comments[i].data.score + ' points</span><a href=' + '//reddit.com' + thread.permalink + comments[i].data.id + ' target="_blank">View on Reddit</a></div>';
+        var imageTemplate = '<div class="card">' +
+                              '<a href="#" class="img-link">' +
+                                '<img src=' + images[i] + '>' +
+                              '</a>' +
+                              '<span>' + comments[i].data.author + '</span>' +
+                              '<span>' + comments[i].data.score + ' points</span>' +
+                              '<a href=' + '//reddit.com' + thread.permalink + comments[i].data.id + ' target="_blank">View on Reddit</a>' +
+                            '</div>';
         // append images to the container and reinitialise masonry
         $('#images').append(imageTemplate)
                     .masonry().masonry('destroy').imagesLoaded(function(){$('#images').masonry()});

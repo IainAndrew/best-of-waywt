@@ -328,7 +328,10 @@ button {
   background: #fff;
   border: 1px solid grey;
   border-radius: 2px;
-  display: none; }
+  display: none;
+  -webkit-transition: all 0.2s ease;
+  -moz-transition: all 0.2s ease;
+  transition: all 0.2s ease; }
   .lightbox.show {
     display: block; }
   .lightbox a {
