@@ -96,10 +96,12 @@ function request() {
 $('#images').on('click', '.img-link', function(e) {
   e.preventDefault();
   $('#lightbox').addClass('show').find('#lightbox-image').append( '<img src=' + $(this).find('img').attr('src') + '>' );
+  $('#overlay').addClass('show');
 });
 $('#lightbox a').on('click', function(e) {
    e.preventDefault();
   $('#lightbox').removeClass('show');
+  $('#overlay').removeClass('show');
   $('#lightbox-image').empty();
 });
 
