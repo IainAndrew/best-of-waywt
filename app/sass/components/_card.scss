@@ -12,7 +12,7 @@
   margin-bottom:1rem;
   border-radius:$border-radius;
   background:#fff;
-  box-shadow: 0 1px 3px rgba(0,0,0,0.12), 0 0px 2px rgba(0,0,0,0.24);
+  @include box-shadow-z1;
   @include media($tablet) {
     @include calc(width, "50% - 1rem");
   }
@@ -24,6 +24,48 @@
   }
   @include media($widescreen) {
     @include calc(width, "(100% / 6) - 1rem");
+  }
+  .img-link {
+    display:block;
+    position:relative;
+    &:before {
+      content:"";
+      position:absolute;
+      top:0;
+      left:0;
+      background:#000;
+      opacity:0;
+      width:100%;
+      height:100%;
+      z-index:1;
+      border-top-right-radius:$border-radius;
+      border-top-left-radius:$border-radius;
+      @include transition(all 0.2s ease);
+    }
+    &:after {
+      font-family:fontello;
+      content:"\e803";
+      position:absolute;
+      top:50%;
+      left:50%;
+      @include transform(translate(-50%, -50%));
+      z-index:1;
+      opacity:0;
+      color:#fff;
+      font-size:2em;
+      -webkit-font-smoothing: antialiased;
+      @include transition(all 0.2s ease);
+    }
+    .no-touch & {
+      &:hover {
+        &:before {
+          opacity:0.3;
+        }
+        &:after {
+          opacity:1;
+        }
+      }
+    }
   }
   img {
     width: 100%;
@@ -38,56 +80,4 @@
   width:100%;
   height:10rem;
   background:grey;
-}
-
-.overlay {
-  position:fixed;
-  top:0;
-  left:0;
-  width:100%;
-  height:100%;
-  background:#000;
-  //display:none;
-  opacity:0;
-  @include transform(scale(0));
-  @include transition(opacity 0.3s ease);
-  &.show {
-    //display:block;
-    @include transform(scale(1));
-    opacity:0.8;
-  }
-}
-
-.lightbox {
-  width:auto;
-  max-width:95%;
-  height:95%;
-  position:fixed;
-  top:50%;
-  left:50%;
-  @include transform(translate(-50%, -50%) scale(0));
-  //display:none;
-  @include transition(all 0.3s $cubic);
-  &.show {
-    //display:block;
-    @include transform(translate(-50%, -50%) scale(1));
-  }
-  a {
-    position:absolute;
-    top:0;
-    left:0;
-    z-index:1;
-  }
-  .lightbox-image {
-    position:relative;
-    top:0;
-    left:0;
-    width:100%;
-    height:100%;
-    img {
-      width:auto;
-      height:100%;
-      border-radius:$border-radius;
-    }
-  }
 }

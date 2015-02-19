@@ -3,6 +3,7 @@
 
 // Utilities
 @import "utils/variables";
+@import "utils/mixins";
 
 // Base
 @import "base/normalize";
@@ -12,6 +13,7 @@
 
 // Components
 @import "components/card";
+@import "components/lightbox";
 
 // Partials
 @import "partials/nav";
