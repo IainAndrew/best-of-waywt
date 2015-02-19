@@ -74,15 +74,15 @@ function request() {
       }
 
       for (var i = 0; i < images.length; i ++) {
-        var imageTemplate = '<div class="card"><img src=' + images[i] + '><span>' + comments[i].data.author + '</span><span>' + comments[i].data.score + ' points</span><a href=' + '//reddit.com' + thread.permalink + comments[i].data.id + '>View on Reddit</a></div>';
+        var imageTemplate = '<div class="card"><a href="#" class="img-link"><img src=' + images[i] + '></a><span>' + comments[i].data.author + '</span><span>' + comments[i].data.score + ' points</span><a href=' + '//reddit.com' + thread.permalink + comments[i].data.id + ' target="_blank">View on Reddit</a></div>';
         // append images to the container and reinitialise masonry
         $('#images').append(imageTemplate)
                     .masonry().masonry('destroy').imagesLoaded(function(){$('#images').masonry()});
         $('img').error(function() {
           if ( ($(this).attr('src').indexOf('drsd.so') > -1) || ($(this).attr('src').indexOf('dressed.so') > -1) ) {
-            $(this).unbind('error').replaceWith('<a class="view-on" target="_blank" href=' + $(this).attr("src") + '>view on dressed.so</a>');
+            $(this).unbind('error').closest('.img-link').replaceWith('<a class="view-on" target="_blank" href=' + $(this).attr("src") + '>view on dressed.so</a>');
           } else if ( ($(this).attr('src').indexOf('imgur.com') > -1) ) {
-            $(this).unbind('error').replaceWith('<a class="view-on" target="_blank" href=' + $(this).attr("src") + '>view album on imgur</a>');
+            $(this).unbind('error').closest('.img-link').replaceWith('<a class="view-on" target="_blank" href=' + $(this).attr("src") + '>view album on imgur</a>');
           } else if ( ($(this).attr('src').indexOf('reddit.com') > -1) ) {
             $(this).unbind('error').closest('.card').remove();
           }
@@ -92,6 +92,16 @@ function request() {
     });
   });
 }
+
+$('#images').on('click', '.img-link', function(e) {
+  e.preventDefault();
+  $('#lightbox').addClass('show').find('#lightbox-image').append( '<img src=' + $(this).find('img').attr('src') + '>' );
+});
+$('#lightbox a').on('click', function(e) {
+   e.preventDefault();
+  $('#lightbox').removeClass('show');
+  $('#lightbox-image').empty();
+});
 
 request();
 masonryInit();
