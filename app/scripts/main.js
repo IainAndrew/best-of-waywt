@@ -102,10 +102,11 @@ function request() {
         // });
       }
       $('img').error(function() {
+        var viewOnTemplate = '<a class="view-on" target="_blank" href=' + $(this).attr("src").replace('//res.cloudinary.com/duj6igl8q/image/fetch/w_300/', '') + '><p><span>thumbnail unavailable</span>';
         if ( ($(this).attr('src').indexOf('drsd.so') > -1) || ($(this).attr('src').indexOf('dressed.so') > -1) ) {
-          $(this).unbind('error').closest('.img-link').replaceWith('<a class="view-on" target="_blank" href=' + $(this).attr("src").replace('//res.cloudinary.com/duj6igl8q/image/fetch/w_300/', '') + '>thumbnail unavailable - view on dressed.so</a>');
+          $(this).unbind('error').closest('.img-link').replaceWith(viewOnTemplate + '<span>view on dressed.so</span></p></a>');
         } else if ( ($(this).attr('src').indexOf('imgur.com') > -1) ) {
-          $(this).unbind('error').closest('.img-link').replaceWith('<a class="view-on" target="_blank" href=' + $(this).attr("src").replace('//res.cloudinary.com/duj6igl8q/image/fetch/w_300/', '') + '>thumbnail unavailable - view album on imgur</a>');
+          $(this).unbind('error').closest('.img-link').replaceWith(viewOnTemplate + '<span>view album on imgur</span></p></a>');
         } else if ( ($(this).attr('src').indexOf('reddit.com') > -1) ) {
           $(this).unbind('error').closest('.card').remove();
         }
