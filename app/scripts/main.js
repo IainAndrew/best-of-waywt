@@ -76,7 +76,7 @@ function request() {
       for (var i = 0; i < images.length; i ++) {
         var imageTemplate = '<div class="card">' +
                               '<a href="#" class="img-link">' +
-                                '<img src=' + images[i] + '>' +
+                                '<img src=' + '//res.cloudinary.com/duj6igl8q/image/fetch/w_250/' + images[i] + '>' +
                               '</a>' +
                               '<span>' + comments[i].data.author + '</span>' +
                               '<span>' + comments[i].data.score + ' points</span>' +
@@ -89,9 +89,9 @@ function request() {
                     });
         $('img').error(function() {
           if ( ($(this).attr('src').indexOf('drsd.so') > -1) || ($(this).attr('src').indexOf('dressed.so') > -1) ) {
-            $(this).unbind('error').closest('.img-link').replaceWith('<a class="view-on" target="_blank" href=' + $(this).attr("src") + '>view on dressed.so</a>');
+            $(this).unbind('error').closest('.img-link').replaceWith('<a class="view-on" target="_blank" href=' + $(this).attr("src").replace('//res.cloudinary.com/duj6igl8q/image/fetch/w_250/', '') + '>thumbnail unavailable - view on dressed.so</a>');
           } else if ( ($(this).attr('src').indexOf('imgur.com') > -1) ) {
-            $(this).unbind('error').closest('.img-link').replaceWith('<a class="view-on" target="_blank" href=' + $(this).attr("src") + '>view album on imgur</a>');
+            $(this).unbind('error').closest('.img-link').replaceWith('<a class="view-on" target="_blank" href=' + $(this).attr("src").replace('//res.cloudinary.com/duj6igl8q/image/fetch/w_250/', '') + '>thumbnail unavailable - view album on imgur</a>');
           } else if ( ($(this).attr('src').indexOf('reddit.com') > -1) ) {
             $(this).unbind('error').closest('.card').remove();
           }
@@ -105,7 +105,7 @@ function request() {
 
 $('#images').on('click', '.img-link', function(e) {
   e.preventDefault();
-  $('#lightbox').addClass('show').find('#lightbox-image').append( '<img src=' + $(this).find('img').attr('src') + '>' );
+  $('#lightbox').addClass('show').find('#lightbox-image').append( '<img src=' + $(this).find('img').attr('src').replace('//res.cloudinary.com/duj6igl8q/image/fetch/w_250/', '') + '>' );
   $('#overlay').addClass('show');
 });
 $('#lightbox a').on('click', function(e) {

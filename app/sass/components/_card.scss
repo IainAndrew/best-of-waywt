@@ -31,6 +31,14 @@
     overflow:hidden;
     border-top-right-radius:$border-radius;
     border-top-left-radius:$border-radius;
+    img {
+      width: 100%;
+      height: auto;
+      vertical-align: bottom;
+      border-top-right-radius:$border-radius;
+      border-top-left-radius:$border-radius;
+      @include transition(all 0.2s ease);
+    }
     &:before {
       content:"";
       position:absolute;
@@ -72,14 +80,6 @@
         }
       }
     }
-  }
-  img {
-    width: 100%;
-    height: auto;
-    vertical-align: bottom;
-    border-top-right-radius:$border-radius;
-    border-top-left-radius:$border-radius;
-    @include transition(all 0.2s ease);
   }
 }
 .view-on {

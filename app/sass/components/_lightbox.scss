@@ -39,15 +39,8 @@
   display:block;
   font-size:2em;
   color:#fff;
-  @include transition(opacity 0.2s ease);
-  @include transform(translate3d(0,0,0));
   i {
     display:block;
-  }
-  .no-touch & {
-    &:hover {
-      opacity:0.8;
-    }
   }
 }
 .lightbox-image {

@@ -395,6 +395,15 @@ button {
     overflow: hidden;
     border-top-right-radius: 7px;
     border-top-left-radius: 7px; }
+    .card .img-link img {
+      width: 100%;
+      height: auto;
+      vertical-align: bottom;
+      border-top-right-radius: 7px;
+      border-top-left-radius: 7px;
+      -webkit-transition: all 0.2s ease;
+      -moz-transition: all 0.2s ease;
+      transition: all 0.2s ease; }
     .card .img-link:before {
       content: "";
       position: absolute;
@@ -439,15 +448,6 @@ button {
       -ms-transform: scale(1.1);
       -o-transform: scale(1.1);
       transform: scale(1.1); }
-  .card img {
-    width: 100%;
-    height: auto;
-    vertical-align: bottom;
-    border-top-right-radius: 7px;
-    border-top-left-radius: 7px;
-    -webkit-transition: all 0.2s ease;
-    -moz-transition: all 0.2s ease;
-    transition: all 0.2s ease; }
 
 .view-on {
   display: block;
@@ -509,19 +509,9 @@ button {
   left: -2.5rem;
   display: block;
   font-size: 2em;
-  color: #fff;
-  -webkit-transition: opacity 0.2s ease;
-  -moz-transition: opacity 0.2s ease;
-  transition: opacity 0.2s ease;
-  -webkit-transform: translate3d(0, 0, 0);
-  -moz-transform: translate3d(0, 0, 0);
-  -ms-transform: translate3d(0, 0, 0);
-  -o-transform: translate3d(0, 0, 0);
-  transform: translate3d(0, 0, 0); }
+  color: #fff; }
   .lightbox-close i {
     display: block; }
-  .no-touch .lightbox-close:hover {
-    opacity: 0.8; }
 
 .lightbox-image {
   position: relative;
