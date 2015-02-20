@@ -23,7 +23,7 @@ $newest.on('click', function() {
 });
 
 function masonryInit() {
-  $('#images').imagesLoaded(function() {
+  $('#images').masonry().masonry('destroy').imagesLoaded(function() {
     $('#images').masonry({
       itemSelector: '.card',
       isAnimated: true
@@ -84,7 +84,9 @@ function request() {
                             '</div>';
         // append images to the container and reinitialise masonry
         $('#images').append(imageTemplate)
-                    .masonry().masonry('destroy').imagesLoaded(function(){$('#images').masonry()});
+                    .masonry().masonry('destroy').imagesLoaded(function(){
+                      $('#images').masonry().masonry('reloadItems');
+                    });
         $('img').error(function() {
           if ( ($(this).attr('src').indexOf('drsd.so') > -1) || ($(this).attr('src').indexOf('dressed.so') > -1) ) {
             $(this).unbind('error').closest('.img-link').replaceWith('<a class="view-on" target="_blank" href=' + $(this).attr("src") + '>view on dressed.so</a>');
@@ -93,6 +95,7 @@ function request() {
           } else if ( ($(this).attr('src').indexOf('reddit.com') > -1) ) {
             $(this).unbind('error').closest('.card').remove();
           }
+          masonryInit();
         });
       }
 

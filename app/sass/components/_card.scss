@@ -28,6 +28,9 @@
   .img-link {
     display:block;
     position:relative;
+    overflow:hidden;
+    border-top-right-radius:$border-radius;
+    border-top-left-radius:$border-radius;
     &:before {
       content:"";
       position:absolute;
@@ -64,6 +67,9 @@
         &:after {
           opacity:1;
         }
+        img {
+          @include transform(scale(1.1));
+        }
       }
     }
   }
@@ -73,6 +79,7 @@
     vertical-align: bottom;
     border-top-right-radius:$border-radius;
     border-top-left-radius:$border-radius;
+    @include transition(all 0.2s ease);
   }
 }
 .view-on {

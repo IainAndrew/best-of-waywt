@@ -391,7 +391,10 @@ button {
       width: calc((100% / 6) - 1rem); } }
   .card .img-link {
     display: block;
-    position: relative; }
+    position: relative;
+    overflow: hidden;
+    border-top-right-radius: 7px;
+    border-top-left-radius: 7px; }
     .card .img-link:before {
       content: "";
       position: absolute;
@@ -430,12 +433,21 @@ button {
       opacity: 0.3; }
     .no-touch .card .img-link:hover:after {
       opacity: 1; }
+    .no-touch .card .img-link:hover img {
+      -webkit-transform: scale(1.1);
+      -moz-transform: scale(1.1);
+      -ms-transform: scale(1.1);
+      -o-transform: scale(1.1);
+      transform: scale(1.1); }
   .card img {
     width: 100%;
     height: auto;
     vertical-align: bottom;
     border-top-right-radius: 7px;
-    border-top-left-radius: 7px; }
+    border-top-left-radius: 7px;
+    -webkit-transition: all 0.2s ease;
+    -moz-transition: all 0.2s ease;
+    transition: all 0.2s ease; }
 
 .view-on {
   display: block;
