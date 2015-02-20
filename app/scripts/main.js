@@ -82,7 +82,7 @@ function request() {
                                 '<img src=' + '//res.cloudinary.com/duj6igl8q/image/fetch/w_300/' + images[i] + '>' +
                               '</a>' +
                               '<span>' + comments[i].data.author + '</span>' +
-                              '<span>' + comments[i].data.score + ' points</span>' +
+                              '<span>' + comments[i].data.score + '</span>' +
                               '<a href=' + '//reddit.com' + thread.permalink + comments[i].data.id + ' target="_blank">View on Reddit</a>' +
                             '</div>';
         // append images to the container and reinitialise masonry

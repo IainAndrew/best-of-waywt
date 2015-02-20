@@ -312,7 +312,7 @@ table {
 
 /* '' */
 html, body {
-  height: 100%; }
+  min-height: 100%; }
 
 body {
   font-family: Montserrat, Helvetica Neue, Helvetica, Arial, sans-serif;
@@ -446,11 +446,15 @@ button {
     .no-touch .card .img-link:hover:after {
       opacity: 1; }
     .no-touch .card .img-link:hover img {
-      -webkit-transform: scale(1.1);
-      -moz-transform: scale(1.1);
-      -ms-transform: scale(1.1);
-      -o-transform: scale(1.1);
-      transform: scale(1.1); }
+      -webkit-transform: scale(1.1) rotate(1deg);
+      -moz-transform: scale(1.1) rotate(1deg);
+      -ms-transform: scale(1.1) rotate(1deg);
+      -o-transform: scale(1.1) rotate(1deg);
+      transform: scale(1.1) rotate(1deg); }
+  .card span {
+    display: inline-block; }
+    .card span + a {
+      text-transform: uppercase; }
 
 .view-on {
   display: block;
