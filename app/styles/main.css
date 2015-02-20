@@ -311,6 +311,9 @@ table {
   content: '\e80e'; }
 
 /* '' */
+html, body {
+  height: 100%; }
+
 body {
   font-family: Montserrat, Helvetica Neue, Helvetica, Arial, sans-serif;
   font-weight: 400;
