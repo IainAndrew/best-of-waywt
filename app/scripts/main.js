@@ -108,13 +108,11 @@ $('#images').on('click', '.img-link', function(e) {
   $('#lightbox').addClass('show').find('#lightbox-image').append( '<img src=' + $(this).find('img').attr('src').replace('//res.cloudinary.com/duj6igl8q/image/fetch/w_250/', '') + '>' );
   $('#overlay').addClass('show');
 });
-$('#lightbox a').on('click', function(e) {
+$('#lightbox a').add($('#overlay')).on('click', function(e) {
    e.preventDefault();
   $('#lightbox').removeClass('show');
   $('#overlay').removeClass('show');
-  setTimeout(function() {
-    $('#lightbox-image').empty();
-  }, 300);
+  $('#lightbox-image').empty();
 });
 
 request();
