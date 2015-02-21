@@ -52,6 +52,8 @@ function request() {
 
         if (match) { // makes sure no urls are null so it doesn't break
           var commentLink = match[1]; 
+        } else {
+          continue;
         }
 
         function endsWith(str, suffix) {
