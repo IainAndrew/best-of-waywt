@@ -1,7 +1,8 @@
 var counter = parseInt(window.location.hash.slice(1)),
     $newer = $('#newer'),
     $older = $('#older'),
-    $newest = $('#newest');
+    $newest = $('#newest'),
+    $shoeMode = $('#shoe-mode');
 
 $newer.on('click', function(e) {
   e.preventDefault();
@@ -25,7 +26,7 @@ $newest.on('click', function(e) {
   }
 });
 var shoeMode = false;
-$('#shoe-mode').on('click', function(e) {
+$shoeMode.on('click', function(e) {
   e.preventDefault();
   if (shoeMode) {
     shoeMode = false;
@@ -33,6 +34,7 @@ $('#shoe-mode').on('click', function(e) {
     shoeMode = true;
   }
   request();
+  counter = 0;
 });
 
 function masonryInit() {
@@ -43,7 +45,11 @@ function masonryInit() {
     });
   });
 }
-
+if (window.location.hash.indexOf('shoemode') > -1) { // necessary for direct linking to a shoemode page
+  shoeMode = true;
+} else {
+  shoeMode = false;
+}
 function request() {
   $('#images').empty();
   if (isNaN(counter)) {
@@ -62,7 +68,7 @@ function request() {
     if (!shoeMode) {
       history.pushState('', '', '#' + counter + '/' + thread.title.toLowerCase().slice(7).replace(/\s/g, '').replace('.','-'));
     } else {
-      history.pushState('', '', '#' + counter + '/' + thread.title.toLowerCase().slice(9).replace(/\s/g, '').replace('.','-'));
+      history.pushState('', '', '#' + counter + '/shoemode/' + thread.title.toLowerCase().slice(9).replace(/\s/g, '').replace('.','-'));
     }
 
     $.getJSON(thread.url + '.json?jsonp=?&sort=top', function(response) {
