@@ -3,19 +3,22 @@ var counter = parseInt(window.location.hash.slice(1)),
     $older = $('#older'),
     $newest = $('#newest');
 
-$newer.on('click', function() {
+$newer.on('click', function(e) {
+  e.preventDefault();
   if (counter !== 0) {
     counter -= 1;
     request();
   }
 });
 
-$older.on('click', function() {
+$older.on('click', function(e) {
+  e.preventDefault();
   counter += 1;
   request();
 });
 
-$newest.on('click', function() {
+$newest.on('click', function(e) {
+  e.preventDefault();
   if (counter !== 0) {
     counter = 0;
     request();

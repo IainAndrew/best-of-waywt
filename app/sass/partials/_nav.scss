@@ -1,0 +1,30 @@
+nav {
+  position:fixed;
+  top:0;
+  left:0;
+  width:100%;
+  background:$bg-color - 20;
+  border-bottom:1px solid $bg-color - 40;
+  z-index:2;
+  padding:0.5rem;
+  ul {
+    display:inline-block;
+    position:relative;
+    left:50%;
+    @include transform(translateX(-50%));
+  }
+  li {
+    display:inline-block;
+    text-transform:uppercase;
+    &:not(:last-child) {
+      margin-right:4rem;
+    }
+    a {
+      display:block;
+      text-align:center;
+      i {
+        display:block;
+      }
+    }
+  }
+}
