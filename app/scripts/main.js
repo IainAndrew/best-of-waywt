@@ -24,6 +24,16 @@ $newest.on('click', function(e) {
     request();
   }
 });
+var shoeMode = false;
+$('#shoe-mode').on('click', function(e) {
+  e.preventDefault();
+  if (shoeMode) {
+    shoeMode = false;
+  } else {
+    shoeMode = true;
+  }
+  request();
+});
 
 function masonryInit() {
   $('#images').masonry().masonry('destroy').imagesLoaded(function() {
@@ -39,12 +49,21 @@ function request() {
   if (isNaN(counter)) {
     counter = 0;
   }
-  $.getJSON('http://www.reddit.com/r/malefashionadvice/search.json?q=selftext:WAYWT = What Are You Wearing Today&syntax=lucene&restrict_sr=true&sort=new', function(response) {
+  if (!shoeMode) {
+    var searchQuery = 'q=selftext:WAYWT = What Are You Wearing Today';
+  } else {
+    searchQuery = 'q=title:WshoeAYWT';
+  }
+  $.getJSON('http://www.reddit.com/r/malefashionadvice/search.json?' + searchQuery + '&syntax=lucene&restrict_sr=true&sort=new', function(response) {
     var thread = response.data.children[counter].data,
         $heading = $('#heading');
 
     $heading.html(thread.title);
-    history.pushState('', '', '#' + counter + '/' + thread.title.toLowerCase().slice(7).replace(/\s/g, '').replace('.','-'));
+    if (!shoeMode) {
+      history.pushState('', '', '#' + counter + '/' + thread.title.toLowerCase().slice(7).replace(/\s/g, '').replace('.','-'));
+    } else {
+      history.pushState('', '', '#' + counter + '/' + thread.title.toLowerCase().slice(9).replace(/\s/g, '').replace('.','-'));
+    }
 
     $.getJSON(thread.url + '.json?jsonp=?&sort=top', function(response) {
       var comments = response[1].data.children;
