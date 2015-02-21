@@ -61,10 +61,11 @@ function request() {
     searchQuery = 'q=title:WshoeAYWT';
   }
   $.getJSON('http://www.reddit.com/r/malefashionadvice/search.json?' + searchQuery + '&syntax=lucene&restrict_sr=true&sort=new', function(response) {
-    var thread = response.data.children[counter].data,
-        $heading = $('#heading');
+    var thread = response.data.children[counter].data;
 
-    $heading.html(thread.title);
+    var $heading = $('#heading');
+    $heading.html(thread.title); // bind thread title to page heading
+
     if (!shoeMode) {
       history.pushState('', '', '#' + counter + '/' + thread.title.toLowerCase().slice(7).replace(/\s/g, '').replace('.','-'));
     } else {
@@ -102,19 +103,15 @@ function request() {
       }
 
       for (var i = 0; i < images.length; i ++) {
-        // if (endsWith(images[i], '.jpg') === false && endsWith(images[i], '.png') === false && endsWith(images[i], '.gif') === false) {
-        //   console.log(images.splice(images.indexOf(i)));
-        // }
         var imageTemplate = '<div class="card">' +
                               '<a href="#" class="img-link">' +
-                                '<img src=' + '//res.cloudinary.com/duj6igl8q/image/fetch/w_300/' + images[i] + '>' +
+                                '<img src=' + '//res.cloudinary.com/duj6igl8q/image/fetch/w_300/' + images[i] + '>' + // cloudinary cdn link with resizing
                               '</a>' +
                               '<span>' + comments[i].data.author + '</span>' +
                               '<span>' + comments[i].data.score + '</span>' +
                               '<a href=' + '//reddit.com' + thread.permalink + comments[i].data.id + ' target="_blank">View on Reddit</a>' +
                             '</div>';
-        // append images to the container and reinitialise masonry
-        $('#images').append(imageTemplate)
+        $('#images').append(imageTemplate) // append images to the container and reinitialise masonry
                     .masonry().masonry('destroy').imagesLoaded(function(){
                       $('#images').masonry().masonry('reloadItems');
         });
@@ -137,16 +134,21 @@ function request() {
   });
 }
 
-$('#images').on('click', '.img-link', function(e) {
+var $images = $('#images'),
+    $lightbox = $('#lightbox'),
+    $overlay = $('#overlay'),
+    $lightboxImage = $('#lightbox-image');
+
+$images.on('click', '.img-link', function(e) {
   e.preventDefault();
-  $('#lightbox').addClass('show').find('#lightbox-image').append( '<img src=' + $(this).find('img').attr('src').replace('//res.cloudinary.com/duj6igl8q/image/fetch/w_300/', '') + '>' );
-  $('#overlay').addClass('show');
+  $lightbox.addClass('show').find('#lightbox-image').append( '<img src=' + $(this).find('img').attr('src').replace('//res.cloudinary.com/duj6igl8q/image/fetch/w_300/', '') + '>' );
+  $overlay.addClass('show');
 });
-$('#lightbox a').add($('#overlay')).on('click', function(e) {
+$lightbox.find('a').add($overlay).on('click', function(e) {
   e.preventDefault();
-  $('#lightbox').removeClass('show');
-  $('#overlay').removeClass('show');
-  $('#lightbox-image').empty();
+  $lightbox.removeClass('show');
+  $overlay.removeClass('show');
+  $lightboxImage.empty();
 });
 
 request();
