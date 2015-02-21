@@ -90,8 +90,6 @@ function request() {
         {
           commentLink += '.jpg'; // append .jpg to end of the url
           images.push(commentLink); 
-        // } else if (endsWith(commentLink, '.jpg') === true || endsWith(commentLink, '.png') === true || endsWith(commentLink, '.gif') === true) {
-        //   images.push(commentLink); 
         } else {
           images.push(commentLink); 
         }
@@ -114,16 +112,6 @@ function request() {
                     .masonry().masonry('destroy').imagesLoaded(function(){
                       $('#images').masonry().masonry('reloadItems');
         });
-        // $('img').error(function() {
-        //   if ( ($(this).attr('src').indexOf('drsd.so') > -1) || ($(this).attr('src').indexOf('dressed.so') > -1) ) {
-        //     $(this).unbind('error').closest('.img-link').replaceWith('<a class="view-on" target="_blank" href=' + $(this).attr("src").replace('//res.cloudinary.com/duj6igl8q/image/fetch/w_300/', '') + '>thumbnail unavailable - view on dressed.so</a>');
-        //   } else if ( ($(this).attr('src').indexOf('imgur.com') > -1) ) {
-        //     $(this).unbind('error').closest('.img-link').replaceWith('<a class="view-on" target="_blank" href=' + $(this).attr("src").replace('//res.cloudinary.com/duj6igl8q/image/fetch/w_300/', '') + '>thumbnail unavailable - view album on imgur</a>');
-        //   } else if ( ($(this).attr('src').indexOf('reddit.com') > -1) ) {
-        //     $(this).unbind('error').closest('.card').remove();
-        //   }
-        //   masonryInit();
-        // });
       }
       $('img').error(function() {
         var viewOnTemplate = '<a class="view-on" target="_blank" href=' + $(this).attr("src").replace('//res.cloudinary.com/duj6igl8q/image/fetch/w_300/', '') + '><p><span>thumbnail unavailable</span>';
@@ -133,6 +121,8 @@ function request() {
           $(this).unbind('error').closest('.img-link').replaceWith(viewOnTemplate + '<span>view album on imgur</span></p></a>');
         } else if ( ($(this).attr('src').indexOf('reddit.com') > -1) ) {
           $(this).unbind('error').closest('.card').remove();
+        } else {
+          $(this).unbind('error').closest('.img-link').replaceWith(viewOnTemplate + '<span>view here</span></p></a>');
         }
         masonryInit();
       });
