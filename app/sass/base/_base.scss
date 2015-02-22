@@ -1,3 +1,16 @@
+.browsehappy {
+  position:fixed;
+  top:0;
+  left:0;
+  width:100%;
+  padding:3rem;
+  background:#fff;
+  z-index:5;
+  text-align:center;
+  a {
+    text-decoration:underline;
+  }
+}
 html {
   background:$bg-color;
 }

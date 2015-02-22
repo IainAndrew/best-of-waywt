@@ -65,8 +65,8 @@ function request() {
   $.getJSON('http://www.reddit.com/r/malefashionadvice/search.json?' + searchQuery + '&syntax=lucene&restrict_sr=true&sort=new', function(response) {
     var thread = response.data.children[counter].data;
 
-    var $heading = $('#heading');
-    $heading.html(thread.title); // bind thread title to page heading
+    var $threadTitle = $('#thread-title');
+    $threadTitle.html(thread.title); // bind thread title to #thread-title
 
     if (!shoeMode) {
       history.pushState('', '', '#' + counter + '/' + thread.title.toLowerCase().slice(7).replace(/\s/g, '').replace('.','-'));
@@ -136,23 +136,6 @@ function request() {
   });
 }
 
-var $images = $('#images'),
-    $lightbox = $('#lightbox'),
-    $overlay = $('#overlay'),
-    $lightboxImage = $('#lightbox-image');
-
-$images.on('click', '.img-link', function(e) {
-  e.preventDefault();
-  $lightbox.addClass('show').find('#lightbox-image').append( '<img src=' + $(this).find('img').attr('src').replace('//res.cloudinary.com/duj6igl8q/image/fetch/w_300/', '') + '>' );
-  $overlay.addClass('show');
-});
-$lightbox.find('a').add($overlay).on('click', function(e) {
-  e.preventDefault();
-  $lightbox.removeClass('show');
-  $overlay.removeClass('show');
-  $lightboxImage.empty();
-});
-
 request();
 masonryInit();
 
@@ -161,7 +144,7 @@ $.ajaxSetup({
       $("#loading").show();
     },
     complete:function(){
-      $('#images').imagesLoaded( function(){
+      $('#images').imagesLoaded(function(){
         $("#loading").hide();
       });
     }

@@ -1,0 +1,31 @@
+header {
+  text-transform:uppercase;
+  padding:2rem;
+  text-align:center;
+  h1 {
+    display:inline-block;
+    font-weight:400;
+    font-size:4em;
+    padding:2rem;
+    //border:1px dashed $base-text-color;
+    line-height:1em;
+    text-align:left;
+    span {
+      &:first-child {
+        display:inline-block;
+        font-family:baskerville;
+        font-weight:normal;
+        font-style:italic;
+        font-size:1.2em;
+        text-transform:none;
+        margin-left:-0.4rem;
+        @include transform(translateY(-0.2rem));
+      }
+      &:nth-child(2) {
+        display:block;
+        font-weight:700;
+        margin-left:0.3rem;
+      }
+    }
+  }
+}
