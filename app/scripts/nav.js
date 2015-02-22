@@ -1,7 +1,7 @@
 $(window).on('scroll', function() {
   var $nav = $('nav'),
-      origPos = $nav.offset().top,
-      scrollTop = origPos - $(this).scrollTop();
+      scrollTop = $nav.offset().top - $(this).scrollTop();
+  console.log(scrollTop);
   if (scrollTop <= 0) {
     $nav.addClass('sticky');
     $('h1').css({

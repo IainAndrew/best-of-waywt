@@ -1,5 +1,6 @@
 #images {
   margin-left:1rem;
+  margin-bottom:1rem;
   //width:60%;
 }
 
@@ -84,7 +85,7 @@
   span {
     display:inline-block;
     &+ a {
-      text-transform:uppercase;
+
     }
   }
 }
@@ -99,7 +100,6 @@
   border-top-right-radius:$border-radius;
   p {
     display:block;
-    text-transform:uppercase;
     position:relative;
     top:50%;
     left:50%;

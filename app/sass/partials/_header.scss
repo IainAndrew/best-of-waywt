@@ -1,5 +1,4 @@
 header {
-  text-transform:uppercase;
   padding:2rem;
   text-align:center;
   h1 {
@@ -19,6 +18,7 @@ header {
         font-size:1.2em;
         text-transform:none;
         margin-left:-0.4rem;
+        color:$base-text-color + 40;
         @include transform(translateY(-0.2rem));
       }
       &:nth-child(2) {
