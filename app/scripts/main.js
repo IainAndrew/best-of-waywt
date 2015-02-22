@@ -155,3 +155,14 @@ $lightbox.find('a').add($overlay).on('click', function(e) {
 
 request();
 masonryInit();
+
+$.ajaxSetup({
+    beforeSend:function(){
+      $("#loading").show();
+    },
+    complete:function(){
+      $('#images').imagesLoaded( function(){
+        $("#loading").hide();
+      });
+    }
+});
