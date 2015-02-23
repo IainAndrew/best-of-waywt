@@ -27,7 +27,7 @@ $newest.on('click', function(e) {
 });
 var shoeMode = false;
 $shoeMode.on('click', function(e) {
-  e.preventDefault();
+  //e.preventDefault();
   if (shoeMode) {
     shoeMode = false;
   } else {
@@ -47,6 +47,7 @@ function masonryInit() {
 }
 if (window.location.hash.indexOf('shoemode') > -1) { // necessary for direct linking to a shoemode page
   shoeMode = true;
+  $shoeMode.attr('checked', true);
 } else {
   shoeMode = false;
 }
@@ -139,13 +140,13 @@ function request() {
 request();
 masonryInit();
 
-$.ajaxSetup({
-    beforeSend:function(){
-      $("#loading").show();
-    },
-    complete:function(){
-      $('#images').imagesLoaded(function(){
-        $("#loading").hide();
-      });
-    }
-});
+// $.ajaxSetup({
+//     beforeSend:function(){
+//       $("#loading").show();
+//     },
+//     complete:function(){
+//       $('#images').imagesLoaded(function(){
+//         $("#loading").hide();
+//       });
+//     }
+// });

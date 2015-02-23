@@ -20,3 +20,13 @@ $bg-color:#D8E4E7;
 $border-radius:7px;
 
 $cubic:cubic-bezier(1,0,.19,1.44);
+
+/*
+  Toggle
+*/
+$toggle-bg-color:$bg-color - 20;
+$toggle-checked-bg-color:#F16E31;
+$toggle-width:3rem;
+$toggle-height:1.5rem;
+$toggle-circle-height:$toggle-height - 0.25rem;
+$toggle-circle-width:$toggle-circle-height;

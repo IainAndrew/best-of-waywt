@@ -1,0 +1,36 @@
+input[type=checkbox] {
+  @include appearance(none);
+  width:$toggle-width;
+  height:$toggle-height;
+  background:$toggle-bg-color;
+  border-radius:1rem;
+  position:relative;
+  top:-2px;
+  box-shadow:inset 0 1px 3px rgba(#000, 0.2);
+  cursor:pointer;
+  @include transition(all 0.2s ease);
+  &:after {
+    content:"";
+    height:$toggle-circle-height;
+    width:$toggle-circle-width;
+    border-radius:50%;
+    background:#fff;
+    position:absolute;
+    top:50%;
+    @include transform(translate(0, -50%));
+    left:2px;
+    box-shadow:0 1px 3px rgba(0, 0, 0, 0.2);
+    cursor:pointer;
+    @include transition(all 0.2s $cubic)
+  } 
+  &:checked{
+    background:$toggle-checked-bg-color;
+    &:after{
+      @include calc(left, "100% - 2px");
+      @include transform(translate(-100%, -50%));
+    }
+  }
+  &:focus {
+    outline:none;
+  }
+}
