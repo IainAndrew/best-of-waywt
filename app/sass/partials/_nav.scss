@@ -3,7 +3,11 @@ nav {
   width:100%;
   padding:0.5rem;
   position:relative;
+  text-align:left;
   @include transition(all 0.2s ease);
+  @include media($tablet) {
+    text-align:center;
+  }
   &.sticky {
     position:fixed;
     top:0;
@@ -22,20 +26,21 @@ nav {
     display:inline-block;
     text-transform:uppercase;
     &:not(:last-child) {
-      margin-right:4rem;
+      margin-right:1rem;
     }
     a {
       display:block;
       text-align:center;
       i {
         display:block;
+        font-size:1.3em;
       }
     }
-  }
-  .shoe-mode {
-    position:absolute;
-    top:1.05rem;
-    right:0;
+    @include media($tablet) {
+      &:not(:last-child) {
+        margin-right:4rem;
+      }
+    }
   }
 }
 

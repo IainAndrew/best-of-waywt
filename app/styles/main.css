@@ -16,6 +16,12 @@ html {
 	Colours
 */
 /*
+Header
+*/
+/*
+  Card
+*/
+/*
   Toggle
 */
 article,
@@ -565,6 +571,20 @@ button {
     height: 100%;
     border-radius: 7px; }
 
+.shoe-mode {
+  position: absolute;
+  top: 0.4rem;
+  right: 0; }
+  .shoe-mode label {
+    font-size: 0.6em;
+    display: block; }
+  @media screen and (min-width: 768px) {
+    .shoe-mode {
+      top: 1.05rem; }
+      .shoe-mode label {
+        font-size: 1em;
+        display: inline; } }
+
 input[type=checkbox] {
   -webkit-appearance: none;
   -moz-appearance: none;
@@ -576,12 +596,15 @@ input[type=checkbox] {
   background: #c4d0d3;
   border-radius: 1rem;
   position: relative;
-  top: 0.4rem;
+  top: 0;
   box-shadow: inset 0 1px 3px rgba(0, 0, 0, 0.2);
   cursor: pointer;
   -webkit-transition: all 0.2s ease;
   -moz-transition: all 0.2s ease;
   transition: all 0.2s ease; }
+  @media screen and (min-width: 768px) {
+    input[type=checkbox] {
+      top: 0.4rem; } }
   input[type=checkbox]:after {
     content: "";
     height: 1.25rem;
@@ -615,13 +638,13 @@ input[type=checkbox] {
     outline: none; }
 
 header {
-  padding: 2rem;
+  padding: 1rem;
   text-align: center; }
   header h1 {
     display: inline-block;
     font-weight: 400;
     font-size: 4em;
-    padding: 2rem;
+    padding: 1rem;
     line-height: 1em;
     text-align: left; }
     header h1 span:first-child {
@@ -642,15 +665,24 @@ header {
       display: block;
       font-weight: 700;
       margin-left: 0.3rem; }
+  @media screen and (min-width: 950px) {
+    header {
+      padding: 2rem; }
+      header h1 {
+        padding: 2rem; } }
 
 nav {
   z-index: 2;
   width: 100%;
   padding: 0.5rem;
   position: relative;
+  text-align: left;
   -webkit-transition: all 0.2s ease;
   -moz-transition: all 0.2s ease;
   transition: all 0.2s ease; }
+  @media screen and (min-width: 480px) {
+    nav {
+      text-align: center; } }
   nav.sticky {
     position: fixed;
     top: 0;
@@ -666,16 +698,16 @@ nav {
     display: inline-block;
     text-transform: uppercase; }
     nav li:not(:last-child) {
-      margin-right: 4rem; }
+      margin-right: 1rem; }
     nav li a {
       display: block;
       text-align: center; }
       nav li a i {
-        display: block; }
-  nav .shoe-mode {
-    position: absolute;
-    top: 1.05rem;
-    right: 0; }
+        display: block;
+        font-size: 1.3em; }
+    @media screen and (min-width: 480px) {
+      nav li:not(:last-child) {
+        margin-right: 4rem; } }
 
 #loading {
   position: fixed;

@@ -1,11 +1,11 @@
 header {
-  padding:2rem;
+  padding:$header-padding-mobile;
   text-align:center;
   h1 {
     display:inline-block;
     font-weight:400;
     font-size:4em;
-    padding:2rem;
+    padding:$header-padding-mobile;
     //border:1px dashed $base-text-color;
     line-height:1em;
     text-align:left;
@@ -26,6 +26,12 @@ header {
         font-weight:700;
         margin-left:0.3rem;
       }
+    }
+  }
+  @include media($desktop) {
+    padding:$header-padding-desktop;
+    h1 {
+      padding:$header-padding-desktop;
     }
   }
 }

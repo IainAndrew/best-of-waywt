@@ -1,3 +1,19 @@
+.shoe-mode {
+  position:absolute;
+  top:0.4rem;
+  right:0;
+  label {
+    font-size:0.6em;
+    display:block;
+  }
+  @include media($tablet-large) {
+    top:1.05rem;
+    label {
+      font-size:1em;
+      display:inline;
+    }
+  }
+}
 input[type=checkbox] {
   @include appearance(none);
   width:$toggle-width;
@@ -5,10 +21,13 @@ input[type=checkbox] {
   background:$toggle-bg-color;
   border-radius:1rem;
   position:relative;
-  top:0.4rem;
+  top:0;
   box-shadow:inset 0 1px 3px rgba(#000, 0.2);
   cursor:pointer;
   @include transition(all 0.2s ease);
+  @include media($tablet-large) {
+    top:0.4rem;
+  }
   &:after {
     content:"";
     height:$toggle-circle-height;
