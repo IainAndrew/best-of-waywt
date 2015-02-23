@@ -1,8 +1,7 @@
+var $nav = $('nav'),
+    offset = $nav.offset().top;
 $(window).on('scroll', function() {
-  var $nav = $('nav'),
-      scrollTop = $nav.offset().top - $(this).scrollTop();
-  console.log(scrollTop);
-  if (scrollTop <= 0) {
+  if ($(this).scrollTop() > offset) {
     $nav.addClass('sticky');
     $('h1').css({
       'margin-bottom': $nav.outerHeight()
