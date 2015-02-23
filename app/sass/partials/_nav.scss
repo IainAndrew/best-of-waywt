@@ -2,6 +2,7 @@ nav {
   z-index:2;
   width:100%;
   padding:0.5rem;
+  position:relative;
   @include transition(all 0.2s ease);
   &.sticky {
     position:fixed;
@@ -9,6 +10,9 @@ nav {
     left:0;
     background:$bg-color;
     border-bottom:1px solid $bg-color - 20;
+    .shoe-mode {
+      right:2rem;
+    }
   }
   ul {
     display:inline-block;
@@ -28,9 +32,11 @@ nav {
       }
     }
   }
-}
-.shoe-mode-on {
-  color:orange;
+  .shoe-mode {
+    position:absolute;
+    top:1.05rem;
+    right:0;
+  }
 }
 
 #loading {
