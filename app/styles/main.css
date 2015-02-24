@@ -339,7 +339,7 @@ html, body {
   min-height: 100%; }
 
 body {
-  font-family: Montserrat, Helvetica Neue, Helvetica, Arial, sans-serif;
+  font-family: "Montserrat", Helvetica Neue, Helvetica, Arial, sans-serif;
   font-weight: 400;
   font-size: 14px;
   line-height: 24px;
@@ -649,7 +649,7 @@ header {
     text-align: left; }
     header h1 span:first-child {
       display: inline-block;
-      font-family: baskerville;
+      font-family: Baskerville, "Libre Baskerville";
       font-weight: normal;
       font-style: italic;
       font-size: 1.2em;
