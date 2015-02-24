@@ -8,7 +8,8 @@
     "imagesloaded": "~3.1.8",
     "masonry": "~3.2.2",
     "neat": "~1.7.1",
-    "jquery.lazyload": "~1.9.3"
+    "jquery.lazyload": "~1.9.3",
+    "underscore": "~1.8.2"
   },
   "devDependencies": {
     "jquery": "~1.11.1",
