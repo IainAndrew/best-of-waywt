@@ -59,6 +59,10 @@ nav {
           color:$base-link-hover-color;
         }
       }
+      &.disabled {
+        pointer-events:none;
+        color:$border-color;
+      }
       i {
         display:block;
         font-size:1.3em;

@@ -752,6 +752,9 @@ nav {
       transition: all 0.2s ease; }
       .no-touch nav li a:hover {
         color: #828e91; }
+      nav li a.disabled {
+        pointer-events: none;
+        color: #c4d0d3; }
       nav li a i {
         display: block;
         font-size: 1.3em;

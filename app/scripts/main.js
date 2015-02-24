@@ -56,6 +56,11 @@ function request() {
   if (isNaN(counter)) {
     counter = 0;
   }
+  if (counter === 24) {
+    $older.addClass('disabled');
+  } else {
+    $older.removeClass('disabled');
+  }
   if (!shoeMode) {
     var searchQuery = 'q=selftext:WAYWT = What Are You Wearing Today';
     //$shoeMode.removeClass('shoe-mode-on');
