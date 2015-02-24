@@ -2,7 +2,8 @@ var counter = parseInt(window.location.hash.slice(1)),
     $newer = $('#newer'),
     $older = $('#older'),
     $newest = $('#newest'),
-    $shoeMode = $('#shoe-mode');
+    $shoeMode = $('#shoe-mode'),
+    $container = $('#images');
 
 $newer.on('click', function(e) {
   e.preventDefault();
@@ -38,8 +39,8 @@ $shoeMode.on('click', function(e) {
 });
 
 function masonryInit() {
-  $('#images').masonry().masonry('destroy').imagesLoaded().always(function() {
-    $('#images').masonry({
+  $container.masonry().masonry('destroy').imagesLoaded().always(function() {
+    $container.masonry({
       itemSelector: '.card',
       isAnimated: true
     });
@@ -52,7 +53,7 @@ if (window.location.hash.indexOf('shoemode') > -1) { // necessary for direct lin
   shoeMode = false;
 }
 function request() {
-  $('#images').empty();
+  $container.empty();
   if (isNaN(counter)) {
     counter = 0;
   }
@@ -121,9 +122,9 @@ function request() {
                                 '<a class="reddit-link icon-reddit" href=' + '//reddit.com' + thread.permalink + comments[i].data.id + ' target="_blank"></a>' +
                               '</div>' +
                             '</div>';
-        $('#images').append(imageTemplate) // append images to the container and reinitialise masonry
+        $container.append(imageTemplate) // append images to the container and reinitialise masonry
                     .masonry().masonry('destroy').imagesLoaded().always(function(){
-                      $('#images').masonry().masonry('reloadItems');
+                      $container.masonry().masonry('reloadItems');
         });
       }
       $('img').error(function() {
@@ -152,7 +153,7 @@ $.ajaxSetup({
       $("#loading").addClass('show');
     },
     complete:function(){
-      $('#images').imagesLoaded().always(function(){
+      $container.imagesLoaded().always(function(){
         $("#loading").removeClass('show');
       });
     }
