@@ -1,9 +1,15 @@
 footer {
-  background:$bg-color - 40;
+  background:$border-color;
   text-align:right;
   padding:1rem;
   text-transform:none;
   a {
     color:$base-text-color - 40;
+    @include transition(all 0.2s ease);
+    .no-touch & {
+      &:hover {
+        color:$base-text-color;
+      }
+    }
   }
 }

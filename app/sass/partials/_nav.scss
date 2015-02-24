@@ -5,8 +5,8 @@ nav {
   position:relative;
   text-align:left;
   background:$bg-color;
-  border-bottom:1px dashed $bg-color - 20;
-  border-top:1px dashed $bg-color - 20;
+  border-bottom:1px dashed $border-color;
+  border-top:1px dashed $border-color;
   @include transition(all 0.2s ease);
   @include media($tablet) {
     text-align:center;
@@ -29,13 +29,40 @@ nav {
     text-transform:uppercase;
     &:not(:last-child) {
       margin-right:1rem;
+      .no-touch & {
+        a {
+          &:hover {
+            i {
+              margin-left:-0.5rem;
+            }
+          }
+        }
+      }
+    }
+    &:last-child {
+      .no-touch & {
+        a {
+          &:hover {
+            i {
+              margin-left:0.5rem;
+            }
+          }
+        }
+      }
     }
     a {
       display:block;
       text-align:center;
+      @include transition(all 0.2s ease);
+      .no-touch & {
+        &:hover {
+          color:$base-link-hover-color;
+        }
+      }
       i {
         display:block;
         font-size:1.3em;
+        @include transition(all 0.2s ease);
       }
     }
     @include media($tablet) {

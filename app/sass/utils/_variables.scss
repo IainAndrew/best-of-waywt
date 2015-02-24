@@ -13,7 +13,11 @@ $serif-font-family:Baskerville, 'Libre Baskerville', 'Baskerville Old Face', 'Ho
 	Colours
 */
 $bg-color:#D8E4E7;
+$secondary-color:#F16E31;
 $base-text-color:#505C5F;
+$base-link-hover-color:$base-text-color + 50;
+
+$border-color:$bg-color - 20;
 
 /*
 Header
@@ -28,13 +32,13 @@ $nav-item-margin-tablet:4rem;
   Card
 */
 $card-info-padding:0.5rem;
-$card-info-item-margin:1rem;
+$card-info-item-padding:0.5rem;
 
 /*
   Toggle
 */
 $toggle-bg-color:$bg-color - 20;
-$toggle-checked-bg-color:#F16E31;
+$toggle-checked-bg-color:$secondary-color;
 $toggle-width:3rem;
 $toggle-height:1.5rem;
 $toggle-circle-height:$toggle-height - 0.25rem;

@@ -113,7 +113,7 @@ function request() {
                               '<div class="card-info">' +
                                 '<a class="author" href="//reddit.com/user/' + comments[i].data.author + '" target="_blank">' + comments[i].data.author + '</a>' +
                                 '<span class="score icon-resize-vertical">' + comments[i].data.score + '</span>' +
-                                '<a class="reddit-link" href=' + '//reddit.com' + thread.permalink + comments[i].data.id + ' target="_blank">View on Reddit</a>' +
+                                '<a class="reddit-link icon-reddit" href=' + '//reddit.com' + thread.permalink + comments[i].data.id + ' target="_blank"></a>' +
                               '</div>' +
                             '</div>';
         $('#images').append(imageTemplate) // append images to the container and reinitialise masonry

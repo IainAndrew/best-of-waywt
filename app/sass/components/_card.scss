@@ -86,23 +86,46 @@
 .card-info {
   padding:$card-info-padding;
 }
-.author {
+.author, .score, .reddit-link {
   display:inline-block;
+  &:not(:first-child) {
+    padding-left:$card-info-item-padding;
+    border-left:1px solid $border-color;
+  }
+  &:not(:last-child) {
+    padding-right:$card-info-item-padding;
+  }
+}
+.author {
   text-transform:none;
-  margin-right:$card-info-item-margin;
+  @include transition(all 0.2s ease);
+  .no-touch & {
+    &:hover {
+      color:$base-link-hover-color;
+    }
+  }
 }
 .score {
-  display:inline-block;
-  margin-right:$card-info-item-margin;
+  cursor:default;
+  &:before {
+    font-size:1.1em;
+    margin-left:-0.2rem;
+  }
 }
 .reddit-link {
-  display:block;
+  @include transition(all 0.2s ease);
+  .no-touch & {
+    &:hover {
+      color:$secondary-color;
+    }
+  }
 }
+
 .view-on {
   display:block;
   width:100%;
   height:10rem;
-  background:$bg-color - 20;
+  background:$border-color;
   text-align:center;
   color:#fff;
   border-top-left-radius:$border-radius;
