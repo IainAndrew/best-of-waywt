@@ -5,7 +5,7 @@ header {
     display:inline-block;
     font-weight:400;
     font-size:4em;
-    padding:$header-padding-mobile;
+    padding:$header-padding-desktop;
     //border:1px dashed $base-text-color;
     line-height:1em;
     text-align:left;
@@ -37,8 +37,12 @@ header {
 }
 
 h2 {
+  display:inline-block;
+  position:relative;
+  left:50%;
+  @include transform(translateX(-50%));
   font-weight:400;
-  padding:1rem 1rem 2rem 1rem;
+  padding:2rem 2rem 3rem 2rem;
   text-align:center;
   @include media($desktop) {
     padding:2rem 2rem 4rem 2rem;

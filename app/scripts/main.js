@@ -38,7 +38,7 @@ $shoeMode.on('click', function(e) {
 });
 
 function masonryInit() {
-  $('#images').masonry().masonry('destroy').imagesLoaded(function() {
+  $('#images').masonry().masonry('destroy').imagesLoaded().always(function() {
     $('#images').masonry({
       itemSelector: '.card',
       isAnimated: true
@@ -122,7 +122,7 @@ function request() {
                               '</div>' +
                             '</div>';
         $('#images').append(imageTemplate) // append images to the container and reinitialise masonry
-                    .masonry().masonry('destroy').imagesLoaded(function(){
+                    .masonry().masonry('destroy').imagesLoaded().always(function(){
                       $('#images').masonry().masonry('reloadItems');
         });
       }
@@ -147,13 +147,13 @@ function request() {
 request();
 masonryInit();
 
-// $.ajaxSetup({
-//     beforeSend:function(){
-//       $("#loading").show();
-//     },
-//     complete:function(){
-//       $('#images').imagesLoaded(function(){
-//         $("#loading").hide();
-//       });
-//     }
-// });
+$.ajaxSetup({
+    beforeSend:function(){
+      $("#loading").addClass('show');
+    },
+    complete:function(){
+      $('#images').imagesLoaded().always(function(){
+        $("#loading").removeClass('show');
+      });
+    }
+});

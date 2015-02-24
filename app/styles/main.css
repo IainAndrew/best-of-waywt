@@ -385,10 +385,48 @@ noscript {
 button {
   margin: 1rem; }
 
+#loading {
+  width: 2rem;
+  height: 2rem;
+  position: absolute;
+  top: 1rem;
+  left: 1rem;
+  border-radius: 50%;
+  border-left: 3px solid #505C5F;
+  border-top: 3px solid #505C5F;
+  display: none;
+  -webkit-animation: spin 1s linear infinite;
+  -moz-animation: spin 1s linear infinite;
+  animation: spin 1s linear infinite; }
+  #loading.show {
+    display: inline-block; }
+
+@-webkit-keyframes spin {
+  from {
+    -webkit-transform: rotate(0deg); }
+  to {
+    -webkit-transform: rotate(360deg); } }
+@-moz-keyframes spin {
+  from {
+    -moz-transform: rotate(0deg); }
+  to {
+    -moz-transform: rotate(360deg); } }
+@keyframes spin {
+  from {
+    -webkit-transform: rotate(0deg);
+    -moz-transform: rotate(0deg);
+    -ms-transform: rotate(0deg);
+    -o-transform: rotate(0deg);
+    transform: rotate(0deg); }
+  to {
+    -webkit-transform: rotate(360deg);
+    -moz-transform: rotate(360deg);
+    -ms-transform: rotate(360deg);
+    -o-transform: rotate(360deg);
+    transform: rotate(360deg); } }
 #images {
   margin-left: 1rem;
-  margin-bottom: 1rem;
-  min-height: 20rem; }
+  margin-bottom: 1rem; }
 
 .card {
   float: left;
@@ -675,7 +713,7 @@ header {
     display: inline-block;
     font-weight: 400;
     font-size: 4em;
-    padding: 1rem;
+    padding: 2rem;
     line-height: 1em;
     text-align: left; }
     header h1 span:first-child {
@@ -703,8 +741,16 @@ header {
         padding: 2rem; } }
 
 h2 {
+  display: inline-block;
+  position: relative;
+  left: 50%;
+  -webkit-transform: translateX(-50%);
+  -moz-transform: translateX(-50%);
+  -ms-transform: translateX(-50%);
+  -o-transform: translateX(-50%);
+  transform: translateX(-50%);
   font-weight: 400;
-  padding: 1rem 1rem 2rem 1rem;
+  padding: 2rem 2rem 3rem 2rem;
   text-align: center; }
   @media screen and (min-width: 950px) {
     h2 {
@@ -764,24 +810,6 @@ nav {
     @media screen and (min-width: 480px) {
       nav li:not(:last-child) {
         margin-right: 4rem; } }
-
-#loading {
-  position: fixed;
-  top: 0;
-  left: 0;
-  width: 100%;
-  height: 100%;
-  background: #fff;
-  display: none; }
-  #loading img {
-    position: relative;
-    top: 50%;
-    left: 50%;
-    -webkit-transform: translate(-50%, -50%);
-    -moz-transform: translate(-50%, -50%);
-    -ms-transform: translate(-50%, -50%);
-    -o-transform: translate(-50%, -50%);
-    transform: translate(-50%, -50%); }
 
 footer {
   background: #c4d0d3;
