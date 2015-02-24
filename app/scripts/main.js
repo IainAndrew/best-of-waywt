@@ -110,9 +110,11 @@ function request() {
                               '<a href="#" class="img-link">' +
                                 '<img src=' + '//res.cloudinary.com/duj6igl8q/image/fetch/w_300/' + images[i] + '>' + // cloudinary cdn link with resizing
                               '</a>' +
-                              '<span>' + comments[i].data.author + '</span>' +
-                              '<span>' + comments[i].data.score + '</span>' +
-                              '<a href=' + '//reddit.com' + thread.permalink + comments[i].data.id + ' target="_blank">View on Reddit</a>' +
+                              '<div class="card-info">' +
+                                '<a class="author" href="//reddit.com/user/' + comments[i].data.author + '" target="_blank">' + comments[i].data.author + '</a>' +
+                                '<span class="score icon-resize-vertical">' + comments[i].data.score + '</span>' +
+                                '<a class="reddit-link" href=' + '//reddit.com' + thread.permalink + comments[i].data.id + ' target="_blank">View on Reddit</a>' +
+                              '</div>' +
                             '</div>';
         $('#images').append(imageTemplate) // append images to the container and reinitialise masonry
                     .masonry().masonry('destroy').imagesLoaded(function(){
@@ -124,7 +126,7 @@ function request() {
         if ( ($(this).attr('src').indexOf('drsd.so') > -1) || ($(this).attr('src').indexOf('dressed.so') > -1) ) {
           $(this).unbind('error').closest('.img-link').replaceWith(viewOnTemplate + '<span>view on dressed.so</span></p></a>');
         } else if ( ($(this).attr('src').indexOf('imgur.com') > -1) ) {
-          $(this).unbind('error').closest('.img-link').replaceWith(viewOnTemplate + '<span>view album on imgur</span></p></a>');
+          $(this).unbind('error').closest('.img-link').replaceWith(viewOnTemplate + '<span>view on imgur</span></p></a>');
         } else if ( ($(this).attr('src').indexOf('reddit.com') > -1) ) {
           $(this).unbind('error').closest('.card').remove();
         } else {

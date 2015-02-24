@@ -418,67 +418,81 @@ button {
     .card {
       width: -webkit-calc((100% / 6) - 1rem);
       width: calc((100% / 6) - 1rem); } }
-  .card .img-link {
-    display: block;
-    position: relative;
-    overflow: hidden;
+
+.img-link {
+  display: block;
+  position: relative;
+  overflow: hidden;
+  border-top-right-radius: 7px;
+  border-top-left-radius: 7px; }
+  .img-link img {
+    width: 100%;
+    height: auto;
+    vertical-align: bottom;
     border-top-right-radius: 7px;
-    border-top-left-radius: 7px; }
-    .card .img-link img {
-      width: 100%;
-      height: auto;
-      vertical-align: bottom;
-      border-top-right-radius: 7px;
-      border-top-left-radius: 7px;
-      -webkit-transition: all 0.2s ease;
-      -moz-transition: all 0.2s ease;
-      transition: all 0.2s ease; }
-    .card .img-link:before {
-      content: "";
-      position: absolute;
-      top: 0;
-      left: 0;
-      background: #000;
-      opacity: 0;
-      width: 100%;
-      height: 100%;
-      z-index: 1;
-      border-top-right-radius: 7px;
-      border-top-left-radius: 7px;
-      -webkit-transition: all 0.2s ease;
-      -moz-transition: all 0.2s ease;
-      transition: all 0.2s ease; }
-    .card .img-link:after {
-      font-family: fontello;
-      content: "\e803";
-      position: absolute;
-      top: 50%;
-      left: 50%;
-      -webkit-transform: translate(-50%, -50%);
-      -moz-transform: translate(-50%, -50%);
-      -ms-transform: translate(-50%, -50%);
-      -o-transform: translate(-50%, -50%);
-      transform: translate(-50%, -50%);
-      z-index: 1;
-      opacity: 0;
-      color: #fff;
-      font-size: 2em;
-      -webkit-font-smoothing: antialiased;
-      -webkit-transition: all 0.2s ease;
-      -moz-transition: all 0.2s ease;
-      transition: all 0.2s ease; }
-    .no-touch .card .img-link:hover:before {
-      opacity: 0.3; }
-    .no-touch .card .img-link:hover:after {
-      opacity: 1; }
-    .no-touch .card .img-link:hover img {
-      -webkit-transform: scale(1.1) rotate(1deg);
-      -moz-transform: scale(1.1) rotate(1deg);
-      -ms-transform: scale(1.1) rotate(1deg);
-      -o-transform: scale(1.1) rotate(1deg);
-      transform: scale(1.1) rotate(1deg); }
-  .card span {
-    display: inline-block; }
+    border-top-left-radius: 7px;
+    -webkit-transition: all 0.2s ease;
+    -moz-transition: all 0.2s ease;
+    transition: all 0.2s ease; }
+  .img-link:before {
+    content: "";
+    position: absolute;
+    top: 0;
+    left: 0;
+    background: #000;
+    opacity: 0;
+    width: 100%;
+    height: 100%;
+    z-index: 1;
+    border-top-right-radius: 7px;
+    border-top-left-radius: 7px;
+    -webkit-transition: all 0.2s ease;
+    -moz-transition: all 0.2s ease;
+    transition: all 0.2s ease; }
+  .img-link:after {
+    font-family: fontello;
+    content: "\e803";
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    -webkit-transform: translate(-50%, -50%);
+    -moz-transform: translate(-50%, -50%);
+    -ms-transform: translate(-50%, -50%);
+    -o-transform: translate(-50%, -50%);
+    transform: translate(-50%, -50%);
+    z-index: 1;
+    opacity: 0;
+    color: #fff;
+    font-size: 2em;
+    -webkit-font-smoothing: antialiased;
+    -webkit-transition: all 0.2s ease;
+    -moz-transition: all 0.2s ease;
+    transition: all 0.2s ease; }
+  .no-touch .img-link:hover:before {
+    opacity: 0.3; }
+  .no-touch .img-link:hover:after {
+    opacity: 1; }
+  .no-touch .img-link:hover img {
+    -webkit-transform: scale(1.1) rotate(1deg);
+    -moz-transform: scale(1.1) rotate(1deg);
+    -ms-transform: scale(1.1) rotate(1deg);
+    -o-transform: scale(1.1) rotate(1deg);
+    transform: scale(1.1) rotate(1deg); }
+
+.card-info {
+  padding: 0.5rem; }
+
+.author {
+  display: inline-block;
+  text-transform: none;
+  margin-right: 1rem; }
+
+.score {
+  display: inline-block;
+  margin-right: 1rem; }
+
+.reddit-link {
+  display: block; }
 
 .view-on {
   display: block;
@@ -580,7 +594,7 @@ button {
     display: block; }
   @media screen and (min-width: 768px) {
     .shoe-mode {
-      top: 1.05rem; }
+      top: 0.8rem; }
       .shoe-mode label {
         font-size: 1em;
         display: inline; } }
@@ -649,7 +663,7 @@ header {
     text-align: left; }
     header h1 span:first-child {
       display: inline-block;
-      font-family: Baskerville, "Libre Baskerville";
+      font-family: Baskerville, "Libre Baskerville", "Baskerville Old Face", "Hoefler Text", Garamond, "Times New Roman", serif;
       font-weight: normal;
       font-style: italic;
       font-size: 1.2em;
@@ -698,7 +712,7 @@ nav {
     position: fixed;
     top: 0;
     left: 0;
-    border-top: 0; }
+    border: 0; }
     nav.sticky .shoe-mode {
       right: 2rem; }
   nav ul {
