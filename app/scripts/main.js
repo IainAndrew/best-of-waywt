@@ -111,21 +111,72 @@ function request() {
         }
       }
 
-      for (var i = 0; i < images.length; i ++) {
-        var imageTemplate = '<div class="card">' +
-                              '<a href="#" class="img-link">' +
-                                '<img src=' + '//res.cloudinary.com/duj6igl8q/image/fetch/w_300/' + images[i] + '>' + // cloudinary cdn link with resizing
-                              '</a>' +
-                              '<div class="card-info">' +
-                                '<a class="author" href="//reddit.com/user/' + comments[i].data.author + '" target="_blank">' + comments[i].data.author + '</a>' +
-                                '<span class="score icon-resize-vertical">' + comments[i].data.score + '</span>' +
-                                '<a class="reddit-link icon-reddit" href=' + '//reddit.com' + thread.permalink + comments[i].data.id + ' target="_blank"></a>' +
-                              '</div>' +
-                            '</div>';
-        $container.append(imageTemplate) // append images to the container and reinitialise masonry
-                    .masonry().masonry('destroy').imagesLoaded().always(function(){
-                      $container.masonry().masonry('reloadItems');
-        });
+      // Add events for handling submitted and completed
+
+      
+
+      for (var i = 0; i < images.length; i++) {
+        console.log(comments[i].data.author);
+
+        var events = {
+          completed : function(results, error) {
+            // This event tells you that Blitline.com has completed processing the images. There is an error string that is
+            // returned which may tell you specifically what the problem is, OR if there was a server side error. It will
+            // not always tell you what the server side error is.
+            // If successfull, it will return the same images as the submitted event did.
+            if (!error) {
+              _.each(results, function(result) {
+                var images = result.images;
+                _.each(images, function(image) {
+                  var imageTemplate = '<div class="card">' +
+                                  '<a href="#" class="img-link">' +
+                                    '<img src=' + image.s3_url + '>' +
+                                  '</a>' +
+                                  '<div class="card-info">' +
+                                    '<a class="author" href="//reddit.com/user/' + comments[i].data.author + '" target="_blank">' + comments[i].data.author + '</a>' +
+                                    '<span class="score icon-resize-vertical">' + comments[i].data.score + '</span>' +
+                                    '<a class="reddit-link icon-reddit" href=' + '//reddit.com' + thread.permalink + comments[i].data.id + ' target="_blank"></a>' +
+                                  '</div>' +
+                                '</div>';
+                  $("#images").append(imageTemplate)
+                              .masonry().masonry('destroy')
+                              .imagesLoaded().always(function(){
+                                $container.masonry().masonry('reloadItems');
+                              });
+                });
+              });
+            } else {
+              console.log("There was an error processing the images. Please see following error:\r\n\r\n" + error + "\r\n\r\nIf you are unable to resolve the issue, please check your Dashboard at Blitline.com");
+            }
+          },
+          submitted : function(jobIds, images) {
+            //console.log("Job has been successfully submitted to blitline for processing\r\n\r\nPlease wait a few moments for them to complete.");
+          }
+        }
+
+        // Set your own App ID;
+        var myAppId = "8MeKfIar6EZ3XuVF9WZZD8A"
+
+        // Create Blitline Object
+        var blitline = new Blitline();
+
+        // Build your JSON
+        var json = { 
+          "application_id": myAppId, 
+          "src" : images[i], 
+          "functions" : [{
+            "name":"resize_to_fit",
+            "params": {
+                "width":300
+            }, 
+            "save" : { 
+              "image_identifier" : "MY_CLIENT_ID" 
+            }
+          }]
+        };
+
+        // Submit it
+        blitline.submit(JSON.stringify(json), events);
       }
       $('img').error(function() {
         var viewOnTemplate = '<a class="view-on" target="_blank" href=' + $(this).attr("src").replace('//res.cloudinary.com/duj6igl8q/image/fetch/w_300/', '') + '><p><span>thumbnail unavailable</span>';
@@ -158,3 +209,19 @@ $.ajaxSetup({
       });
     }
 });
+
+
+// var imageTemplate = '<div class="card">' +
+//                       '<a href="#" class="img-link">' +
+//                         '<img src=' + '//res.cloudinary.com/duj6igl8q/image/fetch/w_300/' + images[i] + '>' + // cloudinary cdn link with resizing
+//                       '</a>' +
+//                       '<div class="card-info">' +
+//                         '<a class="author" href="//reddit.com/user/' + comments[i].data.author + '" target="_blank">' + comments[i].data.author + '</a>' +
+//                         '<span class="score icon-resize-vertical">' + comments[i].data.score + '</span>' +
+//                         '<a class="reddit-link icon-reddit" href=' + '//reddit.com' + thread.permalink + comments[i].data.id + ' target="_blank"></a>' +
+//                       '</div>' +
+//                     '</div>';
+// $container.append(imageTemplate) // append images to the container and reinitialise masonry
+//             .masonry().masonry('destroy').imagesLoaded().always(function(){
+//               $container.masonry().masonry('reloadItems');
+// });
