@@ -102,7 +102,8 @@ function request() {
          && commentLink.toLowerCase().indexOf("imgur.com/a/") <= 0 // and it's not an album
          && commentLink.toLowerCase().indexOf("imgur.com/gallery") <= 0 // or a gallery
          && commentLink.toLowerCase().indexOf(",") <= 0 // or has a comma in it
-         && endsWith(commentLink, '.jpg') === true || endsWith(commentLink, '.png') === true || endsWith(commentLink, '.gif') === true) // and already ends with .jpg .png or .gif
+         && endsWith(commentLink, '.jpg') === true || endsWith(commentLink, '.png') === true || endsWith(commentLink, '.gif') === true
+         && endsWith(commentLink, 'l.jpg') === false && endsWith(commentLink, 'l.png') === false && endsWith(commentLink, 'l.gif') === false)
         {
           images.push(commentLink.replace('.jpg', 'l.jpg')); // l makes it a 'large thumbnail (imgur api)'
         } else if (commentLink.toLowerCase().indexOf("imgur.com") >= 0 // if url is an imgur link
@@ -139,7 +140,7 @@ function request() {
         });
       }
       $('img').error(function() {
-        var viewOnTemplate = '<a class="view-on" target="_blank" href=' + $(this).attr("src") + '><p><span>thumbnail unavailable</span>';
+        var viewOnTemplate = '<a class="view-on" target="_blank" href=' + $(this).attr("src").replace('l.jpg', '.jpg') + '><p><span>thumbnail unavailable</span>';
         if ( ($(this).attr('src').indexOf('drsd.so') > -1) || ($(this).attr('src').indexOf('dressed.so') > -1) ) {
           $(this).unbind('error').closest('.img-link').replaceWith(viewOnTemplate + '<span>view on dressed.so</span></p></a>');
         } else if ( ($(this).attr('src').indexOf('imgur.com') > -1) ) {
