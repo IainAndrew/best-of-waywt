@@ -5,7 +5,7 @@ var $images = $('#images'),
 
 $images.on('click', '.img-link', function(e) {
   e.preventDefault();
-  $lightbox.addClass('show').find('#lightbox-image').append( '<img src=' + $(this).find('img').attr('src').replace('//res.cloudinary.com/duj6igl8q/image/fetch/w_300/', '') + '>' );
+  $lightbox.addClass('show').find('#lightbox-image').append( '<img src=' + $(this).find('img').attr('src') + '>' );
   $overlay.addClass('show');
 });
 $lightbox.find('a').add($overlay).on('click', function(e) {

@@ -102,11 +102,17 @@ function request() {
          && commentLink.toLowerCase().indexOf("imgur.com/a/") <= 0 // and it's not an album
          && commentLink.toLowerCase().indexOf("imgur.com/gallery") <= 0 // or a gallery
          && commentLink.toLowerCase().indexOf(",") <= 0 // or has a comma in it
-         && endsWith(commentLink, '.jpg') === false && endsWith(commentLink, '.png') === false && endsWith(commentLink, '.gif') === false) // or already ends with .jpg or .png or .gif
+         && endsWith(commentLink, '.jpg') === true || endsWith(commentLink, '.png') === true || endsWith(commentLink, '.gif') === true) // and already ends with .jpg .png or .gif
         {
-          commentLink += '.jpg'; // append .jpg to end of the url
-          images.push(commentLink); 
-        } else {
+          images.push(commentLink.replace('.jpg', 'l.jpg')); // l makes it a 'large thumbnail (imgur api)'
+        } else if (commentLink.toLowerCase().indexOf("imgur.com") >= 0 // if url is an imgur link
+         && commentLink.toLowerCase().indexOf("imgur.com/a/") <= 0 // and it's not an album
+         && commentLink.toLowerCase().indexOf("imgur.com/gallery") <= 0 // or a gallery
+         && commentLink.toLowerCase().indexOf(",") <= 0 // or has a comma in it
+         && endsWith(commentLink, '.jpg') === false && endsWith(commentLink, '.png') === false && endsWith(commentLink, '.gif') === false) // or already ends with .jpg or .png or .gif) 
+        {
+          images.push(commentLink += 'l.jpg'); 
+        }  else {
           images.push(commentLink); 
         }
       }
@@ -119,7 +125,7 @@ function request() {
 
         var imageTemplate = '<div class="card">' +
                               '<a href="#" class="img-link">' +
-                                '<img src=' + '//res.cloudinary.com/duj6igl8q/image/fetch/w_300/' + images[i] + '>' + // cloudinary cdn link with resizing
+                                '<img src=' + images[i] + '>' +
                               '</a>' +
                               '<div class="card-info">' +
                                 '<a class="author" href="//reddit.com/user/' + comments[i].data.author + '" target="_blank">' + comments[i].data.author + '</a>' +
@@ -133,7 +139,7 @@ function request() {
         });
       }
       $('img').error(function() {
-        var viewOnTemplate = '<a class="view-on" target="_blank" href=' + $(this).attr("src").replace('//res.cloudinary.com/duj6igl8q/image/fetch/w_300/', '') + '><p><span>thumbnail unavailable</span>';
+        var viewOnTemplate = '<a class="view-on" target="_blank" href=' + $(this).attr("src") + '><p><span>thumbnail unavailable</span>';
         if ( ($(this).attr('src').indexOf('drsd.so') > -1) || ($(this).attr('src').indexOf('dressed.so') > -1) ) {
           $(this).unbind('error').closest('.img-link').replaceWith(viewOnTemplate + '<span>view on dressed.so</span></p></a>');
         } else if ( ($(this).attr('src').indexOf('imgur.com') > -1) ) {
