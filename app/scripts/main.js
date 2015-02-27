@@ -123,9 +123,15 @@ function request() {
       
 
       for (var i = 0; i < images.length; i++) {
+        var source;
+        if (images[i].toLowerCase().indexOf("imgur.com") >= 0) {
+          source = images[i].replace('l.jpg', '.jpg');
+        } else {
+          source = images[i];
+        }
 
         var imageTemplate = '<div class="card">' +
-                              '<a href="#" class="img-link">' +
+                              '<a href="' + source + '" class="img-link fancybox" rel="group">' +
                                 '<img src=' + images[i] + '>' +
                               '</a>' +
                               '<div class="card-info">' +
