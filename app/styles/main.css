@@ -222,8 +222,8 @@ table {
 
 @font-face {
   font-family: 'fontello';
-  src: url("../../styles/fonts/fontello.eot?46575628");
-  src: url("../../styles/fonts/fontello.eot?46575628#iefix") format("embedded-opentype"), url("../../styles/fonts/fontello.woff?46575628") format("woff"), url("../../styles/fonts/fontello.ttf?46575628") format("truetype"), url("../../styles/fonts/fontello.svg?46575628#fontello") format("svg");
+  src: url("../styles/fonts/fontello.eot?46575628");
+  src: url("../styles/fonts/fontello.eot?46575628#iefix") format("embedded-opentype"), url("../styles/fonts/fontello.woff?46575628") format("woff"), url("../styles/fonts/fontello.ttf?46575628") format("truetype"), url("../styles/fonts/fontello.svg?46575628#fontello") format("svg");
   font-weight: normal;
   font-style: normal; }
 /* Chrome hack: SVG is rendered more smooth in Windozze. 100% magic, uncomment if you need it. */
@@ -570,84 +570,6 @@ button {
     transform: translate(-50%, -50%); }
   .view-on span {
     display: block; }
-
-.overlay {
-  position: fixed;
-  top: 0;
-  left: 0;
-  width: 100%;
-  height: 100%;
-  background: #000;
-  opacity: 0;
-  z-index: 3;
-  -webkit-transform: scale(0);
-  -moz-transform: scale(0);
-  -ms-transform: scale(0);
-  -o-transform: scale(0);
-  transform: scale(0);
-  -webkit-transition: opacity 0.3s ease;
-  -moz-transition: opacity 0.3s ease;
-  transition: opacity 0.3s ease; }
-  .overlay.show {
-    -webkit-transform: scale(1);
-    -moz-transform: scale(1);
-    -ms-transform: scale(1);
-    -o-transform: scale(1);
-    transform: scale(1);
-    opacity: 0.8; }
-
-.lightbox {
-  width: auto;
-  min-width: -webkit-calc(95% - 4rem);
-  min-width: calc(95% - 4rem);
-  max-width: -webkit-calc(95% - 4rem);
-  max-width: calc(95% - 4rem);
-  height: auto;
-  position: fixed;
-  top: 50%;
-  left: 50%;
-  z-index: 3;
-  -webkit-transform: translate(-50%, -50%) scale(0);
-  -moz-transform: translate(-50%, -50%) scale(0);
-  -ms-transform: translate(-50%, -50%) scale(0);
-  -o-transform: translate(-50%, -50%) scale(0);
-  transform: translate(-50%, -50%) scale(0);
-  -webkit-transition: all 0.3s cubic-bezier(1, 0, 0.19, 1.44);
-  -moz-transition: all 0.3s cubic-bezier(1, 0, 0.19, 1.44);
-  transition: all 0.3s cubic-bezier(1, 0, 0.19, 1.44); }
-  @media screen and (min-width: 768px) {
-    .lightbox {
-      min-width: 0;
-      height: 95%; } }
-  .lightbox.show {
-    -webkit-transform: translate(-50%, -50%) scale(1);
-    -moz-transform: translate(-50%, -50%) scale(1);
-    -ms-transform: translate(-50%, -50%) scale(1);
-    -o-transform: translate(-50%, -50%) scale(1);
-    transform: translate(-50%, -50%) scale(1); }
-
-.lightbox-close {
-  position: absolute;
-  top: 0rem;
-  left: -2.5rem;
-  display: block;
-  font-size: 2em;
-  color: #fff; }
-  .lightbox-close i {
-    display: block; }
-
-.lightbox-image {
-  position: relative;
-  top: 0;
-  left: 0;
-  width: 100%;
-  height: 100%; }
-  .lightbox-image img {
-    width: auto;
-    height: auto;
-    max-width: 100%;
-    max-height: 95vh;
-    border-radius: 7px; }
 
 .fancybox-skin {
   border-radius: 7px; }
