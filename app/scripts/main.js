@@ -69,7 +69,7 @@ function request() {
     searchQuery = 'q=title:WshoeAYWT';
     //$shoeMode.addClass('shoe-mode-on');
   }
-  $.getJSON('http://www.reddit.com/r/malefashionadvice/search.json?' + searchQuery + '&syntax=lucene&restrict_sr=true&sort=new', function(response) {
+  $.getJSON('//www.reddit.com/r/malefashionadvice/search.json?' + searchQuery + '&syntax=lucene&restrict_sr=true&sort=new', function(response) {
     var thread = response.data.children[counter].data;
 
     var $threadTitle = $('#thread-title');
