@@ -668,13 +668,17 @@ header {
       display: block;
       font-weight: 700;
       margin-left: 0.3rem; }
+  header h2 {
+    font-size: 0.8em;
+    font-weight: 400;
+    color: #96a2a5; }
   @media screen and (min-width: 950px) {
     header {
       padding: 2rem; }
       header h1 {
         padding: 2rem; } }
 
-h2 {
+.thread-title {
   display: inline-block;
   position: relative;
   left: 50%;
@@ -687,7 +691,7 @@ h2 {
   padding: 2rem 2rem 3rem 2rem;
   text-align: center; }
   @media screen and (min-width: 950px) {
-    h2 {
+    .thread-title {
       padding: 2rem 2rem 4rem 2rem; } }
 
 nav {
