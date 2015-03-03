@@ -85,13 +85,22 @@ function request() {
       var comments = response[1].data.children;
       var images = [];
 
+      // for (var i = 0; i < comments.length - 1; i++) {
+      //   var match = comments[i].data.body_html.match(/a href="([^"]*)/); // extract urls from comments
+
+      //   if (match) { // makes sure no urls are null so it doesn't break
+      //     var commentLink = match[1]; 
+      //   } else {
+      //     continue;
+      //   }
+
       for (var i = 0; i < comments.length - 1; i++) {
         var match = comments[i].data.body_html.match(/a href="([^"]*)/); // extract urls from comments
 
-        if (match) { // makes sure no urls are null so it doesn't break
-          var commentLink = match[1]; 
+        if (match) {
+          var commentLink = match[1];
         } else {
-          continue;
+          comments.splice(i, 1);
         }
 
         function endsWith(str, suffix) {
