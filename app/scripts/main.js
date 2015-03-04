@@ -71,7 +71,6 @@ function request() {
   }
   $.getJSON('//www.reddit.com/r/malefashionadvice/search.json?' + searchQuery + '&syntax=lucene&restrict_sr=true&sort=new', function(response) {
     var thread = response.data.children[counter].data;
-    console.log(response.data.children);
 
     var $threadTitle = $('#thread-title');
     $threadTitle.html(thread.title); // bind thread title to #thread-title
@@ -128,11 +127,10 @@ function request() {
         }
       }
 
-      // Add events for handling submitted and completed
-
-      
+      // Add events for handling submitted and completed   
 
       for (var i = 0; i < images.length; i++) {
+        
         var source;
         if (images[i].toLowerCase().indexOf("imgur.com") >= 0) {
           source = images[i].replace('l.jpg', '.jpg');
@@ -155,6 +153,18 @@ function request() {
                       $container.masonry().masonry('reloadItems');
         });
       }
+      $(function(){ // remove cards whose images are duplicates
+        var srcs = [],
+          temp;
+        $('.card img').filter(function(){
+          temp = $(this).attr("src");
+          if($.inArray(temp, srcs) < 0) {
+              srcs.push(temp);   
+              return false;
+          }
+          return true;
+        }).closest('.card').remove();
+      });
       $('img').error(function() {
         var viewOnTemplate = '<a class="view-on" target="_blank" href=' + $(this).attr("src").replace('l.jpg', '.jpg') + '><p><span>thumbnail unavailable</span>';
         if ( ($(this).attr('src').indexOf('drsd.so') > -1) || ($(this).attr('src').indexOf('dressed.so') > -1) ) {
