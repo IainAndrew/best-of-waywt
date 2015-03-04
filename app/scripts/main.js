@@ -63,7 +63,7 @@ function request() {
     $older.removeClass('disabled');
   }
   if (!shoeMode) {
-    var searchQuery = 'q=selftext:WAYWT = What Are You Wearing Today';
+    var searchQuery = 'q=selftext:WAYWT = What Are You Wearing Today author:MFAModerator';
     //$shoeMode.removeClass('shoe-mode-on');
   } else {
     searchQuery = 'q=title:WshoeAYWT';
@@ -71,6 +71,7 @@ function request() {
   }
   $.getJSON('//www.reddit.com/r/malefashionadvice/search.json?' + searchQuery + '&syntax=lucene&restrict_sr=true&sort=new', function(response) {
     var thread = response.data.children[counter].data;
+    console.log(response.data.children);
 
     var $threadTitle = $('#thread-title');
     $threadTitle.html(thread.title); // bind thread title to #thread-title
