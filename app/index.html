@@ -48,6 +48,7 @@
     <header>
       <a href="//www.reddit.com/r/malefashionadvice/" target="_blank"><h2>/r/malefashionadvice</h2></a>
       <h1>Best <span>of </span><span>WAYWT</span></h1>
+
       <nav>
         <ul>
           <li>
@@ -74,21 +75,17 @@
           <input type="checkbox" id="shoe-mode">
         </div>
       </nav>
+
     </header>
 
-    <h2 id="thread-title" class="thread-title"></h2>
-    <div id="loading"></div>
-
-    <div id="images"></div>
-
-    <!-- <div id="overlay" class="overlay"></div> -->
-
-    <!-- <div id="lightbox" class="lightbox">
-      <a href="#" class="lightbox-close">
-        <i class="icon-cancel-circled"></i>
+    <main>
+      <h2 id="thread-title" class="thread-title"></h2>
+      <div id="loading"></div>
+      <div id="images"></div>
+      <a href="#" id="back-to-top" class="back-to-top">
+        <i class="icon-angle-left"></i>
       </a>
-      <div id="lightbox-image" class="lightbox-image"></div>
-    </div> -->
+    </main>
 
     <footer>
       <p>Made by <a href="//iainandrew.com">Iain Andrew</a></p>
@@ -97,7 +94,6 @@
     <noscript>
       <p>This website requires Javascript, please enable it in your browser settings.</p>
     </noscript>
-
 
     <!-- build:js(.) scripts/vendor.js -->
     <!-- bower:js -->
@@ -124,6 +120,7 @@
     <script src="scripts/main.js"></script>
     <script src="scripts/lightbox.js"></script>
     <script src="scripts/nav.js"></script>
+    <script src="scripts/backToTop.js"></script>
     <!-- endbuild -->
 </body>
 </html>

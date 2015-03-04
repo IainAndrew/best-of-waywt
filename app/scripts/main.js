@@ -1,4 +1,4 @@
-var counter = parseInt(window.location.hash.slice(1)),
+var counter = parseInt(window.location.hash.slice(1)), // get number value from url hash
     $newer = $('#newer'),
     $older = $('#older'),
     $newest = $('#newest'),
@@ -100,7 +100,7 @@ function request() {
         if (match) {
           var commentLink = match[1];
         } else {
-          comments.splice(i, 1);
+          comments.splice(i, 1); // if url is null remove it
         }
 
         function endsWith(str, suffix) {

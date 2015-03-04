@@ -640,6 +640,36 @@ input[type=checkbox] {
   input[type=checkbox]:focus {
     outline: none; }
 
+.back-to-top {
+  width: 3rem;
+  height: 3rem;
+  background: #F16E31;
+  position: fixed;
+  bottom: 1rem;
+  right: 1rem;
+  border-radius: 50%;
+  z-index: 5;
+  font-size: 1.5em;
+  color: #fff;
+  box-shadow: 0 1px 3px rgba(0, 0, 0, 0.12), 0 1px 2px rgba(0, 0, 0, 0.24);
+  -webkit-transition: opacity 0.2s ease;
+  -moz-transition: opacity 0.2s ease;
+  transition: opacity 0.2s ease; }
+  .no-touch .back-to-top {
+    opacity: 0.7; }
+    .no-touch .back-to-top:hover {
+      opacity: 1; }
+  .back-to-top i {
+    position: absolute;
+    display: block;
+    top: 50%;
+    left: 50%;
+    -webkit-transform: translate(-50%, -50%) rotate(90deg);
+    -moz-transform: translate(-50%, -50%) rotate(90deg);
+    -ms-transform: translate(-50%, -50%) rotate(90deg);
+    -o-transform: translate(-50%, -50%) rotate(90deg);
+    transform: translate(-50%, -50%) rotate(90deg); }
+
 header {
   padding: 1rem;
   text-align: center; }
@@ -751,7 +781,7 @@ nav {
 
 footer {
   background: #c4d0d3;
-  text-align: right;
+  text-align: center;
   padding: 1rem;
   text-transform: none; }
   footer a {
