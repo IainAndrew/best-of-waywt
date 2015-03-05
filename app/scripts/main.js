@@ -1,4 +1,4 @@
-var counter = parseInt(window.location.hash.slice(1)), // get number value from url hash
+var counter = parseInt(window.location.hash.slice(1)), // get integer value from url hash
     $newer = $('#newer'),
     $older = $('#older'),
     $newest = $('#newest'),
@@ -39,7 +39,7 @@ $shoeMode.on('click', function(e) {
 });
 
 function masonryInit() {
-  $container.masonry().masonry('destroy').imagesLoaded().always(function() {
+  $container.masonry().masonry('destroy').imagesLoaded().always(function() { // initialise masonry after images have loaded
     $container.masonry({
       itemSelector: '.card',
       isAnimated: true
@@ -57,7 +57,7 @@ function request() {
   if (isNaN(counter)) {
     counter = 0;
   }
-  if (counter === 24) {
+  if (counter === 24) { // remove option to view older thread when on 25th thread
     $older.addClass('disabled');
   } else {
     $older.removeClass('disabled');
@@ -76,9 +76,9 @@ function request() {
     $threadTitle.html(thread.title); // bind thread title to #thread-title
 
     if (!shoeMode) {
-      history.pushState('', '', '#' + counter + '/' + thread.title.toLowerCase().slice(7).replace(/\s/g, '').replace('.','-'));
+      history.pushState('', '', '#' + counter + '/' + thread.title.toLowerCase().slice(7).replace(/\s/g, '').replace('.','-')); // add url pushstate with some formatting
     } else {
-      history.pushState('', '', '#' + counter + '/shoemode/' + thread.title.toLowerCase().slice(9).replace(/\s/g, '').replace('.','-'));
+      history.pushState('', '', '#' + counter + '/shoemode/' + thread.title.toLowerCase().slice(9).replace(/\s/g, '').replace('.','-')); // add url pushstate with some formatting
     }
 
     $.getJSON(thread.url + '.json?jsonp=?&sort=top', function(response) {
@@ -127,10 +127,7 @@ function request() {
         }
       }
 
-      // Add events for handling submitted and completed   
-
       for (var i = 0; i < images.length; i++) {
-        
         var source;
         if (images[i].toLowerCase().indexOf("imgur.com") >= 0) {
           source = images[i].replace('l.jpg', '.jpg');
@@ -186,7 +183,7 @@ function request() {
 request();
 masonryInit();
 
-$.ajaxSetup({
+$.ajaxSetup({ // loading spinner
     beforeSend:function(){
       $("#loading").addClass('show');
     },
