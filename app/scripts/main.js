@@ -69,10 +69,20 @@ function request() {
     searchQuery = 'q=title:WshoeAYWT';
     //$shoeMode.addClass('shoe-mode-on');
   }
-  $.getJSON('//www.reddit.com/r/malefashionadvice/search.json?' + searchQuery + '&syntax=lucene&restrict_sr=true&sort=new', function(response) {
+  $.getJSON('//www.reddit.com/r/malefashionadvice/search.json?' + searchQuery + '&syntax=lucene&restrict_sr=true&sort=new', function(response, xhr) {   // main callback function
+    if(xhr.status == 500 || xhr.status == 404 || xhr.status == 503) { // if server error is thrown
+      requestError();
+    } else {
+      requestSuccess(response);
+    }
+  });
+  var $threadTitle = $('#thread-title');
+  function requestError() {
+    $threadTitle.html('Reddit server error! Try again later.');
+  }
+  function requestSuccess(response) {
     var thread = response.data.children[counter].data;
 
-    var $threadTitle = $('#thread-title');
     $threadTitle.html(thread.title); // bind thread title to #thread-title
 
     if (!shoeMode) {
@@ -84,15 +94,6 @@ function request() {
     $.getJSON(thread.url + '.json?jsonp=?&sort=top', function(response) {
       var comments = response[1].data.children;
       var images = [];
-
-      // for (var i = 0; i < comments.length - 1; i++) {
-      //   var match = comments[i].data.body_html.match(/a href="([^"]*)/); // extract urls from comments
-
-      //   if (match) { // makes sure no urls are null so it doesn't break
-      //     var commentLink = match[1]; 
-      //   } else {
-      //     continue;
-      //   }
 
       for (var i = 0; i < comments.length - 1; i++) {
         var match = comments[i].data.body_html.match(/a href="([^"]*)/); // extract urls from comments
@@ -177,7 +178,7 @@ function request() {
       });
 
     });
-  });
+  }
 }
 
 request();
