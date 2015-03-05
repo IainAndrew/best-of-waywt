@@ -424,11 +424,9 @@ button {
     -ms-transform: rotate(360deg);
     -o-transform: rotate(360deg);
     transform: rotate(360deg); } }
-.images {
+#images {
   margin-left: 1rem;
   margin-bottom: 1rem; }
-  .images.request-error {
-    height: auto; }
 
 .card {
   float: left;
