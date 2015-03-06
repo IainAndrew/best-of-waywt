@@ -1,0 +1,24 @@
+#loading {
+  //display:none;
+  width:2rem;
+  height:2rem;
+  position:absolute;
+  top:1rem;
+  left:1rem;
+  border-radius:50%;
+  border-left:3px solid $base-text-color;
+  //border-top:3px solid $base-text-color;
+  display:none;
+  @include animation(spin 1s linear infinite);
+  &.show {
+    display:inline-block;
+  }
+}
+@include keyframes(spin) {
+  from {
+    @include transform(rotate(0deg));
+  }
+  to {
+    @include transform(rotate(360deg));
+  }
+}
