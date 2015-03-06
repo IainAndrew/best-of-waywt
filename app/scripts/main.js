@@ -42,7 +42,8 @@ function masonryInit() {
   $container.masonry().masonry('destroy').imagesLoaded().always(function() { // initialise masonry after images have loaded
     $container.masonry({
       itemSelector: '.card',
-      isAnimated: true
+      isAnimated: true,
+      isResizable: true
     });
   });
 }
