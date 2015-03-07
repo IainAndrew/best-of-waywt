@@ -4,7 +4,10 @@ var counter = parseInt(window.location.hash.slice(1)), // get integer value from
     $newest = $('#newest'),
     $shoeMode = $('#shoe-mode'),
     $container = $('#images');
-
+window.onhashchange = function() {
+  counter = parseInt(window.location.hash.slice(1));
+  request();
+}
 $newer.on('click', function(e) {
   e.preventDefault();
   if (counter !== 0) {
@@ -70,8 +73,8 @@ function request() {
     searchQuery = 'q=title:WshoeAYWT';
     //$shoeMode.addClass('shoe-mode-on');
   }
-  $.getJSON('//www.reddit.com/r/malefashionadvice/search.json?' + searchQuery + '&syntax=lucene&restrict_sr=true&sort=new', function(response, xhr) {   // main callback function
-    if(xhr.status == 500 || xhr.status == 404 || xhr.status == 503) { // if server error is thrown
+  $.getJSON('//www.reddit.com/r/malefashionadvice/search.json?' + searchQuery + '&syntax=lucene&restrict_sr=true&sort=new', function(response, req) {   // main callback function
+    if(req.status == 500 || req.status == 404 || req.status == 503) { // if server error is thrown
       requestError();
     } else {
       requestSuccess(response);
